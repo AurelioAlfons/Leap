@@ -65,8 +65,9 @@ class _AppNavigation extends State<MainApp> {
           // Title with a PopupMenuButton and animated dropdown arrow
           title: PopupMenuButton<String>(
             onSelected: (value) {
+              // You can handle the selected value here
               // ignore: avoid_print
-              print(value); // You can handle the selected value here
+              print(value);
               setState(() {
                 _isDropdownOpen = false; // Close dropdown on selection
               });
@@ -97,27 +98,37 @@ class _AppNavigation extends State<MainApp> {
               return <PopupMenuEntry<String>>[
                 PopupMenuItem<String>(
                   value: 'Home',
-                  child: Text(
-                    'Home',
-                    style: Theme.of(context).popupMenuTheme.textStyle,
-                  ),
+                  child: Row(children: [
+                    const Icon(Icons.home_rounded),
+                    Text(
+                      '   Home',
+                      style: Theme.of(context).popupMenuTheme.textStyle,
+                    ),
+                  ]),
                 ),
                 PopupMenuItem<String>(
                   value: 'Popular',
-                  child: Text(
-                    'Popular',
-                    style: Theme.of(context).popupMenuTheme.textStyle,
-                  ),
+                  child: Row(children: [
+                    const Icon(Icons.data_exploration_rounded),
+                    Text(
+                      '   Popular',
+                      style: Theme.of(context).popupMenuTheme.textStyle,
+                    ),
+                  ]),
                 ),
               ];
             },
           ),
 
           // Left Button (Drawer or Menu)
-          leading: IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {},
-          ),
+          leading: Builder(builder: (context) {
+            return IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          }),
 
           // Right Button (Search)
           actions: [
@@ -128,38 +139,72 @@ class _AppNavigation extends State<MainApp> {
           ],
         ),
 
+        // Drawer (Menu)
+        drawer: Drawer(
+          child: Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                const SizedBox(
+                  height: 700,
+                ),
+                // Drawer Menu Items
+                ListTile(
+                  leading: const Icon(
+                    Icons.logout_sharp,
+                    color: Color.fromARGB(255, 165, 241, 156),
+                  ),
+                  title: const Text(
+                    'Logout',
+                    style: TextStyle(color: Color.fromARGB(255, 165, 241, 156)),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                    // Navigate to Home Page or perform actions
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+
         // Display the current page based on _currentIndex
         body: _pages[_currentIndex],
 
         // Bottom Navigation Bar
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: _currentIndex, // Set selected tab
-          onTap: _onItemTapped, // Update index on tap
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.bookmark_added_sharp),
-              label: 'Save',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.flutter_dash_sharp),
-              label: 'Dashboard',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.inbox_rounded),
-              label: 'Inbox',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            ),
-          ],
-        ),
+        bottomNavigationBar: navBar(),
       ),
+    );
+  }
+
+  // Bottom Navigation
+  BottomNavigationBar navBar() {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      currentIndex: _currentIndex, // Set selected tab
+      onTap: _onItemTapped, // Update index on tap
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home_rounded),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.bookmark_added_sharp),
+          label: 'Save',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.flutter_dash_sharp),
+          label: 'Dashboard',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.inbox_rounded),
+          label: 'Inbox',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: 'Profile',
+        ),
+      ],
     );
   }
 }
