@@ -9,9 +9,9 @@ class DashboardPage extends StatelessWidget {
       child: Text(
         'Dashboard',
         style: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 165, 241, 156)),
       ),
     );
   }

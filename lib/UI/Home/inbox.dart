@@ -9,9 +9,9 @@ class InboxPage extends StatelessWidget {
       child: Text(
         'Inbox',
         style: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 165, 241, 156)),
       ),
     );
   }

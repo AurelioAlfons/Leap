@@ -10,18 +10,26 @@ void main() {
   runApp(const MainApp());
 }
 
+// Main Class that we will run
+// Declare a StatefulWidget => App can change pages, buttons, etc
+// Changing state
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
 
   @override
-  State<MainApp> createState() => _MainAppState();
+  // Brain of the app: remember information, on clicked, page index
+  // Create the state which we call the _MainAppState
+  State<MainApp> createState() => _AppNavigation();
 }
 
-class _MainAppState extends State<MainApp> {
-  int _currentIndex = 0; // Track selected tab index
+// Navigation Logic & UI
+class _AppNavigation extends State<MainApp> {
+  // Declare the nav index (Home:0)
+  int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    // Correctly define the list of pages
+    // Define the list of pages navigate
+    // HomePage = 0, and so on
     const HomePage(),
     const SavePage(),
     const DashboardPage(),
@@ -29,24 +37,35 @@ class _MainAppState extends State<MainApp> {
     const ProfilePage(),
   ];
 
+  // On Tap function
   void _onItemTapped(int index) {
     setState(() {
-      _currentIndex = index; // Update selected index on item tap
+      _currentIndex = index;
     });
   }
 
+  // UI Configuration (AppBar & Navbar)
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // Remove Debug Banner
       debugShowCheckedModeBanner: false,
+
+      // Calling the appTheme from Styles class
       theme: Styles.appTheme,
+
+      // Scaffold
       home: Scaffold(
+        // AppBar
         appBar: AppBar(
+          // Title
           title: const Text("Leapo"),
+          // Left Button
           leading: IconButton(
             icon: const Icon(Icons.menu),
             onPressed: () {},
           ),
+          // Right Button
           actions: [
             IconButton(
               onPressed: () {},
@@ -55,13 +74,16 @@ class _MainAppState extends State<MainApp> {
           ],
         ),
 
-        // Display the selected page based on _currentIndex
+        // Display the current index
         body: _pages[_currentIndex],
 
+        // Bottom Navigatio Bar
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          currentIndex: _currentIndex, // Set selected tab
-          onTap: _onItemTapped, // Update index on tap
+          // Set selected tab
+          currentIndex: _currentIndex,
+          // Update index on tap
+          onTap: _onItemTapped,
           items: const [
             //
             BottomNavigationBarItem(
