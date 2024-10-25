@@ -17,9 +17,10 @@ class Styles {
           titleTextStyle: TextStyle(
               color: Color.fromARGB(255, 165, 241, 156),
               fontWeight: FontWeight.bold,
-              fontSize: 20),
+              fontSize: 24),
           // Icon
-          iconTheme: IconThemeData(color: Color.fromARGB(255, 165, 241, 156))),
+          iconTheme: IconThemeData(
+              color: Color.fromARGB(255, 165, 241, 156), size: 28)),
 
       // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -33,12 +34,15 @@ class Styles {
 
       // Bottom Navbar
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: Color.fromARGB(255, 30, 28, 28),
-        // Selected item
-        selectedItemColor: Color.fromARGB(255, 165, 241, 156),
-        // Unselected item
-        unselectedItemColor: Colors.white,
-      ),
+          backgroundColor: Color.fromARGB(255, 30, 28, 28),
+          // Selected item
+          selectedIconTheme: IconThemeData(
+              size: 34, color: Color.fromARGB(255, 165, 241, 156)),
+          // Unselected item
+          unselectedIconTheme: IconThemeData(
+            size: 26,
+            color: Colors.white,
+          )),
       //
     );
   }
