@@ -11,14 +11,10 @@ void main() {
 }
 
 // Main Class that we will run
-// Declare a StatefulWidget => App can change pages, buttons, etc
-// Changing state
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
 
   @override
-  // Brain of the app: remember information, on clicked, page index
-  // Create the state which we call the _MainAppState
   State<MainApp> createState() => _AppNavigation();
 }
 
@@ -27,9 +23,11 @@ class _AppNavigation extends State<MainApp> {
   // Declare the nav index (Home:0)
   int _currentIndex = 0;
 
+  // Track if dropdown menu is open
+  bool _isDropdownOpen = false;
+
   final List<Widget> _pages = [
     // Define the list of pages navigate
-    // HomePage = 0, and so on
     const HomePage(),
     const SavePage(),
     const DashboardPage(),
@@ -44,6 +42,13 @@ class _AppNavigation extends State<MainApp> {
     });
   }
 
+  // Toggle dropdown state
+  void _toggleDropdown() {
+    setState(() {
+      _isDropdownOpen = !_isDropdownOpen;
+    });
+  }
+
   // UI Configuration (AppBar & Navbar)
   @override
   Widget build(BuildContext context) {
@@ -54,18 +59,67 @@ class _AppNavigation extends State<MainApp> {
       // Calling the appTheme from Styles class
       theme: Styles.appTheme,
 
-      // Scaffold
       home: Scaffold(
         // AppBar
         appBar: AppBar(
-          // Title
-          title: const Text("Leapo"),
-          // Left Button
+          // Title with a PopupMenuButton and animated dropdown arrow
+          title: PopupMenuButton<String>(
+            onSelected: (value) {
+              // ignore: avoid_print
+              print(value); // You can handle the selected value here
+              setState(() {
+                _isDropdownOpen = false; // Close dropdown on selection
+              });
+            },
+            onCanceled: () {
+              setState(() {
+                _isDropdownOpen = false; // Reset state when canceled
+              });
+            },
+            offset: const Offset(0, 30),
+            padding: EdgeInsets.zero,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text("Leapo"),
+                  AnimatedRotation(
+                    turns: _isDropdownOpen ? 0.5 : 0.0, // Rotate 180 degrees
+                    duration: const Duration(milliseconds: 200),
+                    child: const Icon(Icons.arrow_drop_down_outlined),
+                  ),
+                ],
+              ),
+            ),
+            itemBuilder: (BuildContext context) {
+              _toggleDropdown(); // Toggle dropdown state on open
+              return <PopupMenuEntry<String>>[
+                PopupMenuItem<String>(
+                  value: 'Home',
+                  child: Text(
+                    'Home',
+                    style: Theme.of(context).popupMenuTheme.textStyle,
+                  ),
+                ),
+                PopupMenuItem<String>(
+                  value: 'Popular',
+                  child: Text(
+                    'Popular',
+                    style: Theme.of(context).popupMenuTheme.textStyle,
+                  ),
+                ),
+              ];
+            },
+          ),
+
+          // Left Button (Drawer or Menu)
           leading: IconButton(
             icon: const Icon(Icons.menu),
             onPressed: () {},
           ),
-          // Right Button
+
+          // Right Button (Search)
           actions: [
             IconButton(
               onPressed: () {},
@@ -74,38 +128,31 @@ class _AppNavigation extends State<MainApp> {
           ],
         ),
 
-        // Display the current index
+        // Display the current page based on _currentIndex
         body: _pages[_currentIndex],
 
-        // Bottom Navigatio Bar
+        // Bottom Navigation Bar
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          // Set selected tab
-          currentIndex: _currentIndex,
-          // Update index on tap
-          onTap: _onItemTapped,
+          currentIndex: _currentIndex, // Set selected tab
+          onTap: _onItemTapped, // Update index on tap
           items: const [
-            //
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
             ),
-            //
             BottomNavigationBarItem(
               icon: Icon(Icons.bookmark_added_sharp),
               label: 'Save',
             ),
-            //
             BottomNavigationBarItem(
               icon: Icon(Icons.flutter_dash_sharp),
               label: 'Dashboard',
             ),
-            //
             BottomNavigationBarItem(
               icon: Icon(Icons.inbox_rounded),
               label: 'Inbox',
             ),
-            //
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: 'Profile',

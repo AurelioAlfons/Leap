@@ -23,6 +23,14 @@ class Styles {
 
       // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+      // Popup  theme for consistent styling
+      popupMenuTheme: const PopupMenuThemeData(
+        color: Color.fromARGB(255, 38, 39, 41),
+        textStyle: TextStyle(color: Color.fromARGB(255, 165, 241, 156)),
+      ),
+
+      // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
       // Bottom Navbar
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: Color.fromARGB(255, 30, 28, 28),
