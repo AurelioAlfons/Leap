@@ -4,7 +4,8 @@ import 'package:leap/UI/Home/home.dart';
 import 'package:leap/UI/Home/inbox.dart';
 import 'package:leap/UI/Home/profile.dart';
 import 'package:leap/UI/Home/save.dart';
-import 'package:leap/UI/Layout/styles.dart';
+import 'package:leap/UI/Layout/dark.dart';
+import 'package:leap/UI/Layout/light.dart';
 
 void main() {
   runApp(const MainApp());
@@ -20,14 +21,18 @@ class MainApp extends StatefulWidget {
 
 // Navigation Logic & UI
 class _AppNavigation extends State<MainApp> {
-  // Declare the nav index (Home:0)
-  int _currentIndex = 0;
+  int _currentIndex = 0; // Declare the nav index (Home:0)
+  bool _isDropdownOpen = false; // Track if dropdown menu is open
+  bool isDarkMode = true; // Initial theme state (default to dark mode)
 
-  // Track if dropdown menu is open
-  bool _isDropdownOpen = false;
+  // Toggle theme between Dark and Light
+  void _toggleTheme() {
+    setState(() {
+      isDarkMode = !isDarkMode;
+    });
+  }
 
   final List<Widget> _pages = [
-    // Define the list of pages navigate
     const HomePage(),
     const SavePage(),
     const DashboardPage(),
@@ -35,7 +40,7 @@ class _AppNavigation extends State<MainApp> {
     const ProfilePage(),
   ];
 
-  // On Tap function
+  // Handle bottom navigation item tap
   void _onItemTapped(int index) {
     setState(() {
       _currentIndex = index;
@@ -49,86 +54,84 @@ class _AppNavigation extends State<MainApp> {
     });
   }
 
-  // UI Configuration (AppBar & Navbar)
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       // Remove Debug Banner
       debugShowCheckedModeBanner: false,
-
-      // Calling the appTheme from Styles class
-      theme: Styles.appTheme,
+      theme: isDarkMode ? DarkMode.darkTheme : LightMode.lightTheme,
 
       home: Scaffold(
-        // AppBar
         appBar: AppBar(
-          // Title with a PopupMenuButton and animated dropdown arrow
+          // Title with dropdown
           title: PopupMenuButton<String>(
             onSelected: (value) {
-              // You can handle the selected value here
               // ignore: avoid_print
-              print(value);
+              print(value); // Handle selected item
               setState(() {
-                _isDropdownOpen = false; // Close dropdown on selection
+                _isDropdownOpen = false;
               });
             },
             onCanceled: () {
               setState(() {
-                _isDropdownOpen = false; // Reset state when canceled
+                _isDropdownOpen = false;
               });
             },
             offset: const Offset(0, 30),
             padding: EdgeInsets.zero,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text("Leapo"),
-                  AnimatedRotation(
-                    turns: _isDropdownOpen ? 0.5 : 0.0, // Rotate 180 degrees
-                    duration: const Duration(milliseconds: 200),
-                    child: const Icon(Icons.arrow_drop_down_outlined),
-                  ),
-                ],
-              ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text("Leapo"),
+                AnimatedRotation(
+                  turns: _isDropdownOpen ? 0.5 : 0.0, // Rotate 180 degrees
+                  duration: const Duration(milliseconds: 200),
+                  child: const Icon(Icons.arrow_drop_down_outlined),
+                ),
+              ],
             ),
             itemBuilder: (BuildContext context) {
-              _toggleDropdown(); // Toggle dropdown state on open
+              _toggleDropdown();
               return <PopupMenuEntry<String>>[
                 PopupMenuItem<String>(
                   value: 'Home',
-                  child: Row(children: [
-                    const Icon(Icons.home_rounded),
-                    Text(
-                      '   Home',
-                      style: Theme.of(context).popupMenuTheme.textStyle,
-                    ),
-                  ]),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.home_rounded),
+                      Text(
+                        '   Home',
+                        style: Theme.of(context).popupMenuTheme.textStyle,
+                      ),
+                    ],
+                  ),
                 ),
                 PopupMenuItem<String>(
                   value: 'Popular',
-                  child: Row(children: [
-                    const Icon(Icons.data_exploration_rounded),
-                    Text(
-                      '   Popular',
-                      style: Theme.of(context).popupMenuTheme.textStyle,
-                    ),
-                  ]),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.data_exploration_rounded),
+                      Text(
+                        '   Popular',
+                        style: Theme.of(context).popupMenuTheme.textStyle,
+                      ),
+                    ],
+                  ),
                 ),
               ];
             },
           ),
 
           // Left Button (Drawer or Menu)
-          leading: Builder(builder: (context) {
-            return IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          }),
+          leading: Builder(
+            builder: (context) {
+              return IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              );
+            },
+          ),
 
           // Right Button (Search)
           actions: [
@@ -136,37 +139,25 @@ class _AppNavigation extends State<MainApp> {
               onPressed: () {},
               icon: const Icon(Icons.search_rounded),
             ),
+            Builder(
+              builder: (context) {
+                return IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                  icon: const Icon(
+                      Icons.lightbulb_outlined), // Static icon for right drawer
+                );
+              },
+            ),
           ],
         ),
 
-        // Drawer (Menu)
-        drawer: Drawer(
-          child: Expanded(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                const SizedBox(
-                  height: 700,
-                ),
-                // Drawer Menu Items
-                ListTile(
-                  leading: const Icon(
-                    Icons.logout_sharp,
-                    color: Color.fromARGB(255, 165, 241, 156),
-                  ),
-                  title: const Text(
-                    'Logout',
-                    style: TextStyle(color: Color.fromARGB(255, 165, 241, 156)),
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                    // Navigate to Home Page or perform actions
-                  },
-                ),
-              ],
-            ),
-          ),
-        ),
+        // Left Drawer (Menu)
+        drawer: leftDrawer(context),
+
+        // Right Drawer (Additional Menu)
+        endDrawer: rightDrawer(),
 
         // Display the current page based on _currentIndex
         body: _pages[_currentIndex],
@@ -177,12 +168,102 @@ class _AppNavigation extends State<MainApp> {
     );
   }
 
-  // Bottom Navigation
+  // Right Drawer with Theme Toggle
+  Drawer rightDrawer() {
+    return Drawer(
+      child: Column(
+        children: [
+          // Expanded to make drawer scrollable
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: const [
+                DrawerHeader(
+                  decoration: DarkMode.drawerHeaderStyle,
+                  child: Text(
+                    'Right Menu',
+                    style: TextStyle(color: Colors.white, fontSize: 24),
+                  ),
+                ),
+                // Add other menu items here if needed
+              ],
+            ),
+          ),
+
+          // Row for Settings and Theme Toggle
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: ListTile(
+                  leading: const Icon(Icons.settings_suggest_sharp),
+                  title: const Text(
+                    'Settings',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+              IconButton(
+                // Toggle icon between filled and outlined based on isDarkMode
+                icon: Icon(isDarkMode
+                    ? Icons.brightness_4 // Filled icon for dark mode
+                    : Icons
+                        .brightness_4_outlined), // Outlined icon for light mode
+                onPressed: _toggleTheme,
+                tooltip: 'Toggle Theme',
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Left Drawer
+  Drawer leftDrawer(BuildContext context) {
+    return Drawer(
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: const [
+                DrawerHeader(
+                  decoration: DarkMode.drawerHeaderStyle,
+                  child: Text(
+                    'Left Menu',
+                    style: TextStyle(color: Colors.white, fontSize: 24),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // Logout button at the bottom
+          ListTile(
+            leading: const Icon(Icons.logout_sharp),
+            title: const Text(
+              'Logout',
+              style: TextStyle(fontSize: 24),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Bottom Navigation Bar
   BottomNavigationBar navBar() {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      currentIndex: _currentIndex, // Set selected tab
-      onTap: _onItemTapped, // Update index on tap
+      currentIndex: _currentIndex,
+      onTap: _onItemTapped,
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home_rounded),

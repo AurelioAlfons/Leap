@@ -5,13 +5,10 @@ class InboxPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Text(
         'Inbox',
-        style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 165, 241, 156)),
+        style: Theme.of(context).textTheme.titleLarge,
       ),
     );
   }
