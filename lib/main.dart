@@ -82,7 +82,7 @@ class _AppNavigation extends State<MainApp> {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text("Leapo"),
+                const Text("Terno"),
                 AnimatedRotation(
                   turns: _isDropdownOpen ? 0.5 : 0.0, // Rotate 180 degrees
                   duration: const Duration(milliseconds: 200),
