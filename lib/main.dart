@@ -11,7 +11,6 @@ void main() {
   runApp(const MainApp());
 }
 
-// Main Class that we will run
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
 
@@ -19,19 +18,20 @@ class MainApp extends StatefulWidget {
   State<MainApp> createState() => _AppNavigation();
 }
 
-// Navigation Logic & UI
 class _AppNavigation extends State<MainApp> {
-  int _currentIndex = 0; // Declare the nav index (Home:0)
-  bool _isDropdownOpen = false; // Track if dropdown menu is open
-  bool isDarkMode = true; // Initial theme state (default to dark mode)
+  // Initial navigation index
+  int _currentIndex = 0;
+  // Default theme state
+  bool isDarkMode = true;
 
-  // Toggle theme between Dark and Light
+  // Toggle theme between dark and light
   void _toggleTheme() {
     setState(() {
       isDarkMode = !isDarkMode;
     });
   }
 
+  // List of pages for bottom navigation
   final List<Widget> _pages = [
     const HomePage(),
     const SavePage(),
@@ -40,140 +40,39 @@ class _AppNavigation extends State<MainApp> {
     const ProfilePage(),
   ];
 
-  // Handle bottom navigation item tap
+  // Handle bottom navigation item selection
   void _onItemTapped(int index) {
     setState(() {
       _currentIndex = index;
     });
   }
 
-  // Toggle dropdown state
-  void _toggleDropdown() {
-    setState(() {
-      _isDropdownOpen = !_isDropdownOpen;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Remove Debug Banner
       debugShowCheckedModeBanner: false,
       theme: isDarkMode ? DarkMode.darkTheme : LightMode.lightTheme,
-
       home: Scaffold(
-        appBar: AppBar(
-          // Title with dropdown
-          title: PopupMenuButton<String>(
-            onSelected: (value) {
-              // ignore: avoid_print
-              print(value); // Handle selected item
-              setState(() {
-                _isDropdownOpen = false;
-              });
-            },
-            onCanceled: () {
-              setState(() {
-                _isDropdownOpen = false;
-              });
-            },
-            offset: const Offset(0, 30),
-            padding: EdgeInsets.zero,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text("Terno"),
-                AnimatedRotation(
-                  turns: _isDropdownOpen ? 0.5 : 0.0, // Rotate 180 degrees
-                  duration: const Duration(milliseconds: 200),
-                  child: const Icon(Icons.arrow_drop_down_outlined),
-                ),
-              ],
-            ),
-            itemBuilder: (BuildContext context) {
-              _toggleDropdown();
-              return <PopupMenuEntry<String>>[
-                PopupMenuItem<String>(
-                  value: 'Home',
-                  child: Row(
-                    children: [
-                      const Icon(Icons.home_rounded),
-                      Text(
-                        '   Home',
-                        style: Theme.of(context).popupMenuTheme.textStyle,
-                      ),
-                    ],
-                  ),
-                ),
-                PopupMenuItem<String>(
-                  value: 'Popular',
-                  child: Row(
-                    children: [
-                      const Icon(Icons.data_exploration_rounded),
-                      Text(
-                        '   Popular',
-                        style: Theme.of(context).popupMenuTheme.textStyle,
-                      ),
-                    ],
-                  ),
-                ),
-              ];
-            },
-          ),
-
-          // Left Button (Drawer or Menu)
-          leading: Builder(
-            builder: (context) {
-              return IconButton(
-                icon: const Icon(Icons.menu),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-              );
-            },
-          ),
-
-          // Right Button (Search)
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.search_rounded),
-            ),
-            Builder(
-              builder: (context) {
-                return IconButton(
-                  onPressed: () {
-                    Scaffold.of(context).openEndDrawer();
-                  },
-                  icon: const Icon(
-                      Icons.lightbulb_outlined), // Static icon for right drawer
-                );
-              },
-            ),
-          ],
-        ),
-
-        // Left Drawer (Menu)
-        drawer: leftDrawer(context),
+        // Left Drawer (Main Menu)
+        drawer: _buildLeftDrawer(),
 
         // Right Drawer (Additional Menu)
-        endDrawer: rightDrawer(),
+        endDrawer: _buildRightDrawer(),
 
         // Display the current page based on _currentIndex
         body: _pages[_currentIndex],
 
         // Bottom Navigation Bar
-        bottomNavigationBar: navBar(),
+        bottomNavigationBar: _buildNavBar(),
       ),
     );
   }
 
   // Right Drawer with Theme Toggle
-  Drawer rightDrawer() {
+  Drawer _buildRightDrawer() {
     return Drawer(
       child: Column(
         children: [
-          // Expanded to make drawer scrollable
           Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
@@ -185,12 +84,11 @@ class _AppNavigation extends State<MainApp> {
                     style: TextStyle(color: Colors.white, fontSize: 24),
                   ),
                 ),
-                // Add other menu items here if needed
               ],
             ),
           ),
 
-          // Row for Settings and Theme Toggle
+          // Settings and Theme Toggle Row
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -201,17 +99,14 @@ class _AppNavigation extends State<MainApp> {
                     'Settings',
                     style: TextStyle(fontSize: 24),
                   ),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
+                  onTap: () {},
                 ),
               ),
               IconButton(
-                // Toggle icon between filled and outlined based on isDarkMode
-                icon: Icon(isDarkMode
-                    ? Icons.brightness_4 // Filled icon for dark mode
-                    : Icons
-                        .brightness_4_outlined), // Outlined icon for light mode
+                icon: Icon(
+                  isDarkMode ? Icons.brightness_4 : Icons.brightness_4_outlined,
+                  color: isDarkMode ? DarkMode.iconColor : LightMode.iconColor,
+                ),
                 onPressed: _toggleTheme,
                 tooltip: 'Toggle Theme',
               ),
@@ -222,8 +117,8 @@ class _AppNavigation extends State<MainApp> {
     );
   }
 
-  // Left Drawer
-  Drawer leftDrawer(BuildContext context) {
+  // Left Drawer with Logout option
+  Drawer _buildLeftDrawer() {
     return Drawer(
       child: Column(
         children: [
@@ -249,9 +144,7 @@ class _AppNavigation extends State<MainApp> {
               'Logout',
               style: TextStyle(fontSize: 24),
             ),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () {},
           ),
         ],
       ),
@@ -259,7 +152,7 @@ class _AppNavigation extends State<MainApp> {
   }
 
   // Bottom Navigation Bar
-  BottomNavigationBar navBar() {
+  BottomNavigationBar _buildNavBar() {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       currentIndex: _currentIndex,

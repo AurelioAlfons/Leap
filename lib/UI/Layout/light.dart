@@ -61,6 +61,9 @@ class LightMode {
     );
   }
 
+  // Custom icon color for theme toggle
+  static const Color iconColor = Color(0xFF007A5E);
+
   static const BoxDecoration drawerHeaderStyle = BoxDecoration(
     color: Color(0xFFFFC857),
   );

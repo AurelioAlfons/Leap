@@ -5,6 +5,8 @@ class DarkMode {
     return ThemeData(
       brightness: Brightness.dark,
       scaffoldBackgroundColor: const Color.fromARGB(255, 30, 28, 28),
+
+      // AppBar theme
       appBarTheme: const AppBarTheme(
         backgroundColor: Color.fromARGB(255, 30, 28, 28),
         titleTextStyle: TextStyle(
@@ -17,10 +19,14 @@ class DarkMode {
           size: 28,
         ),
       ),
+
+      // Popup menu theme
       popupMenuTheme: const PopupMenuThemeData(
         color: Color.fromARGB(255, 38, 39, 41),
         textStyle: TextStyle(color: Color.fromARGB(255, 0, 255, 127)),
       ),
+
+      // Drawer theme
       drawerTheme: const DrawerThemeData(
         backgroundColor: Color.fromARGB(255, 30, 28, 28),
         elevation: 5,
@@ -28,6 +34,8 @@ class DarkMode {
           borderRadius: BorderRadius.horizontal(right: Radius.circular(20)),
         ),
       ),
+
+      // ListTile theme
       listTileTheme: const ListTileThemeData(
         iconColor: Color.fromARGB(255, 0, 255, 127),
         textColor: Color.fromARGB(255, 0, 255, 127),
@@ -37,6 +45,8 @@ class DarkMode {
           fontWeight: FontWeight.bold,
         ),
       ),
+
+      // Bottom navigation bar theme
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: Color.fromARGB(255, 30, 28, 28),
         selectedIconTheme: IconThemeData(
@@ -48,6 +58,8 @@ class DarkMode {
           color: Colors.white,
         ),
       ),
+
+      // Text theme
       textTheme: const TextTheme(
         titleLarge: TextStyle(
           fontSize: 24,
@@ -60,6 +72,10 @@ class DarkMode {
     );
   }
 
+  // Custom icon color for theme toggle
+  static const Color iconColor = Color.fromARGB(255, 0, 255, 127);
+
+  // Drawer header style for consistency
   static const BoxDecoration drawerHeaderStyle = BoxDecoration(
     color: Color.fromARGB(255, 0, 200, 83),
   );
