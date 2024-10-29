@@ -31,12 +31,36 @@ class InboxPage extends StatelessWidget {
             NotificationList(
               items: [
                 {
+                  'category': 'Rejection',
+                  'title': 'UI/UX Designer',
+                  'companyName': 'CoinJar',
+                  'location': 'Melbourne, Victoria',
+                  'avatar': 'assets/icon/coinjar.png',
+                  'date': 'Nov 28'
+                },
+                {
+                  'category': 'Rejection',
+                  'title': 'Business Analyst',
+                  'companyName': 'DiDi',
+                  'location': 'Melbourne, Victoria, Australia',
+                  'avatar': 'assets/icon/didi.png',
+                  'date': 'Nov 26'
+                },
+                {
                   'category': 'Approval',
                   'title': 'Software Engineer',
                   'companyName': 'Infosys',
                   'location': 'Melbourne, Victoria, Australia',
                   'avatar': 'assets/icon/infosys.jpg',
                   'date': 'Oct 26'
+                },
+                {
+                  'category': 'Approval',
+                  'title': 'IT Helpdesk Guru',
+                  'companyName': 'Bayside Group',
+                  'location': 'Somerton, Victoria, Australia',
+                  'avatar': 'assets/icon/bayside.jpeg',
+                  'date': 'Oct 15'
                 },
                 {
                   'category': 'News',
@@ -47,17 +71,33 @@ class InboxPage extends StatelessWidget {
                   'date': 'Oct 11'
                 },
                 {
+                  'category': 'Approval',
+                  'title': 'Digital Platforms IBL',
+                  'companyName': 'Mercedes-Benz',
+                  'location': 'Mulgrave, Victoria, Australia',
+                  'avatar': 'assets/icon/merce.jpg',
+                  'date': 'Oct 04'
+                },
+                {
                   'category': 'Rejection',
-                  'title': 'UI/UX Designer',
-                  'companyName': 'CoinJar',
-                  'location': 'Melbourne, Victoria',
-                  'avatar': 'assets/icon/coinjar.png',
-                  'date': 'Nov 28'
+                  'title': 'IT Project Manager',
+                  'companyName': 'Eightfold Institute',
+                  'location': 'Carlton, Victoria, Australia',
+                  'avatar': 'assets/icon/eightfold.png',
+                  'date': 'Sep 20'
                 },
               ],
             ),
             NotificationList(
               items: [
+                {
+                  'category': 'Approval',
+                  'title': 'Software Engineer',
+                  'companyName': 'Infosys',
+                  'location': 'Melbourne, Victoria, Australia',
+                  'avatar': 'assets/icon/infosys.jpg',
+                  'date': 'Oct 26'
+                },
                 {
                   'category': 'Approval',
                   'title': 'IT Helpdesk Guru',
@@ -78,6 +118,14 @@ class InboxPage extends StatelessWidget {
             ),
             NotificationList(
               items: [
+                {
+                  'category': 'Rejection',
+                  'title': 'UI/UX Designer',
+                  'companyName': 'CoinJar',
+                  'location': 'Melbourne, Victoria',
+                  'avatar': 'assets/icon/coinjar.png',
+                  'date': 'Nov 28'
+                },
                 {
                   'category': 'Rejection',
                   'title': 'Business Analyst',
@@ -111,9 +159,14 @@ class NotificationList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemCount: items.length,
+      padding: const EdgeInsets.only(bottom: 70),
+      itemCount: items.length + 1,
       itemBuilder: (context, index) {
-        final item = items[index];
+        if (index == 0) {
+          return const SizedBox(height: 7);
+        }
+
+        final item = items[index - 1];
 
         return NotificationItem(
           category: item['category'],
