@@ -66,8 +66,8 @@ class DarkMode {
           fontWeight: FontWeight.bold,
           color: Color.fromARGB(255, 0, 255, 127),
         ),
-        bodyLarge: TextStyle(color: Colors.white),
-        bodyMedium: TextStyle(color: Colors.white70),
+        bodyLarge: TextStyle(color: Color.fromARGB(255, 0, 255, 127)),
+        bodyMedium: TextStyle(color: Color.fromARGB(255, 0, 255, 127)),
       ),
     );
   }
