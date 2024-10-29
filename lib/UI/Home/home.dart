@@ -7,7 +7,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Custom AppBar with page-specific settings
       appBar: CustomAppBar(
         title: "Home",
         showSearchButton: true,
@@ -15,7 +14,6 @@ class HomePage extends StatelessWidget {
         onMenuPressed: () => Scaffold.of(context).openDrawer(),
         onEndDrawerPressed: () => Scaffold.of(context).openEndDrawer(),
       ),
-
       body: Center(
         child: Text(
           'Home Page',

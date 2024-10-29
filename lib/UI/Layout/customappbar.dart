@@ -9,6 +9,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   // Callbacks for menu and end drawer actions
   final VoidCallback? onMenuPressed;
   final VoidCallback? onEndDrawerPressed;
+  final PreferredSizeWidget? bottom;
 
   const CustomAppBar({
     super.key,
@@ -17,6 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showDropdown = true,
     this.onMenuPressed,
     this.onEndDrawerPressed,
+    this.bottom,
   });
 
   @override
@@ -84,9 +86,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           icon: const Icon(Icons.lightbulb_outlined),
         ),
       ],
+      bottom: bottom,
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize =>
+      Size.fromHeight(kToolbarHeight + (bottom?.preferredSize.height ?? 0.0));
 }

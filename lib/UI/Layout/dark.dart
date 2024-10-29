@@ -59,15 +59,51 @@ class DarkMode {
         ),
       ),
 
-      // Text theme
+      // Text theme (only defined once)
       textTheme: const TextTheme(
         titleLarge: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+        bodyLarge: TextStyle(
+          fontSize: 18,
+          color: Colors.white,
+        ),
+        bodyMedium: TextStyle(
+          fontSize: 16,
+          color: Colors.white,
+        ),
+        titleMedium: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
+        titleSmall: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
+          color: Colors.white,
+        ),
+        bodySmall: TextStyle(
+          fontSize: 14,
+          color: Colors.grey,
+        ),
+        labelLarge: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
           color: Color.fromARGB(255, 0, 255, 127),
         ),
-        bodyLarge: TextStyle(color: Color.fromARGB(255, 0, 255, 127)),
-        bodyMedium: TextStyle(color: Color.fromARGB(255, 0, 255, 127)),
+      ),
+
+      tabBarTheme: const TabBarTheme(
+        labelColor: Color.fromARGB(255, 0, 255, 127),
+        unselectedLabelColor: Colors.white,
+        indicator: UnderlineTabIndicator(
+          borderSide: BorderSide(
+            color: Color.fromARGB(255, 0, 255, 127), // Indicator color
+            width: 2.0,
+          ),
+        ),
       ),
     );
   }

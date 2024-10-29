@@ -48,15 +48,52 @@ class LightMode {
           color: Color(0xFF5F5F5F), // Suggested Gray
         ),
       ),
+
+      // Text theme (only defined once)
       textTheme: const TextTheme(
         titleLarge: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
-          color: Color(0xFF007A5E), // Suggested Green
+          color: Colors.black,
         ),
-        bodyLarge: TextStyle(color: Colors.black),
+        bodyLarge: TextStyle(
+          fontSize: 18,
+          color: Colors.black,
+        ),
         bodyMedium: TextStyle(
-            color: Color(0xFF5F5F5F)), // Suggested Gray for secondary text
+          fontSize: 16,
+          color: Colors.black,
+        ),
+        titleMedium: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: Colors.black,
+        ),
+        titleSmall: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
+          color: Colors.white,
+        ),
+        bodySmall: TextStyle(
+          fontSize: 14,
+          color: Color.fromARGB(255, 43, 42, 42),
+        ),
+        labelLarge: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Color(0xFF007A5E),
+        ),
+      ),
+
+      tabBarTheme: const TabBarTheme(
+        labelColor: Color(0xFF007A5E),
+        unselectedLabelColor: Color(0xFF5F5F5F),
+        indicator: UnderlineTabIndicator(
+          borderSide: BorderSide(
+            color: Color(0xFF007A5E),
+            width: 2.0,
+          ),
+        ),
       ),
     );
   }

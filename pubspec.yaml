@@ -40,5 +40,12 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/icon/bayside.jpeg
+    - assets/icon/didi.png
+    - assets/icon/eightfold.png
+    - assets/icon/infosys.jpg
+    - assets/icon/merce.jpg
+    - assets/icon/coinjar.png
+    - assets/icon/redbull.png
     - assets/icon/terno.png
 
