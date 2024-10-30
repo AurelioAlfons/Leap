@@ -20,6 +20,14 @@ class DarkMode {
         ),
       ),
 
+      // Card theme
+      cardColor: const Color.fromARGB(255, 38, 39, 41), // Dark card background
+
+      // Icon theme for cards in ProfilePage
+      iconTheme: const IconThemeData(
+        color: Color.fromARGB(255, 0, 255, 127), // Same as iconColor
+      ),
+
       // Popup menu theme
       popupMenuTheme: const PopupMenuThemeData(
         color: Color.fromARGB(255, 38, 39, 41),
@@ -59,7 +67,7 @@ class DarkMode {
         ),
       ),
 
-      // Text theme (only defined once)
+      // Text theme (already defined)
       textTheme: const TextTheme(
         titleLarge: TextStyle(
           fontSize: 24,
@@ -111,7 +119,15 @@ class DarkMode {
   // Custom icon color for theme toggle
   static const Color iconColor = Color.fromARGB(255, 0, 255, 127);
 
-  // Drawer header style for consistency
+// Define colors for profile avatar
+  static const Color outerAvatarColor = Color.fromARGB(255, 30, 28, 28);
+
+// Colors for the Edit Profile button in Dark Mode
+  static const Color buttonBackgroundColor = Color.fromARGB(255, 0, 255, 127);
+  // Adjust this color if needed
+  static const Color buttonTextColor = Color.fromARGB(255, 0, 255, 127);
+
+// Drawer header style for consistency
   static const BoxDecoration drawerHeaderStyle = BoxDecoration(
     color: Color.fromARGB(255, 0, 200, 83),
   );
