@@ -6,6 +6,8 @@ class LightMode {
       brightness: Brightness.light,
       scaffoldBackgroundColor: const Color(0xFFF5EAD7),
 
+      shadowColor: const Color.fromARGB(255, 238, 181, 77),
+
       // AppBar theme
       appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xFFF5EAD7),

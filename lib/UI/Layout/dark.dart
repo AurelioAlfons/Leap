@@ -6,6 +6,8 @@ class DarkMode {
       brightness: Brightness.dark,
       scaffoldBackgroundColor: const Color.fromARGB(255, 30, 28, 28),
 
+      shadowColor: const Color.fromARGB(255, 55, 204, 87),
+
       // AppBar theme
       appBarTheme: const AppBarTheme(
         backgroundColor: Color.fromARGB(255, 30, 28, 28),
@@ -21,11 +23,11 @@ class DarkMode {
       ),
 
       // Card theme
-      cardColor: const Color.fromARGB(255, 38, 39, 41), // Dark card background
+      cardColor: const Color.fromARGB(255, 38, 39, 41),
 
       // Icon theme for cards in ProfilePage
       iconTheme: const IconThemeData(
-        color: Color.fromARGB(255, 0, 255, 127), // Same as iconColor
+        color: Color.fromARGB(255, 0, 255, 127),
       ),
 
       // Popup menu theme
@@ -67,7 +69,7 @@ class DarkMode {
         ),
       ),
 
-      // Text theme (already defined)
+      // Text theme
       textTheme: const TextTheme(
         titleLarge: TextStyle(
           fontSize: 24,
@@ -103,12 +105,13 @@ class DarkMode {
         ),
       ),
 
+      // TabBar theme
       tabBarTheme: const TabBarTheme(
         labelColor: Color.fromARGB(255, 0, 255, 127),
         unselectedLabelColor: Colors.white,
         indicator: UnderlineTabIndicator(
           borderSide: BorderSide(
-            color: Color.fromARGB(255, 0, 255, 127), // Indicator color
+            color: Color.fromARGB(255, 0, 255, 127),
             width: 2.0,
           ),
         ),
@@ -116,18 +119,13 @@ class DarkMode {
     );
   }
 
-  // Custom icon color for theme toggle
+  // Custom colors
   static const Color iconColor = Color.fromARGB(255, 0, 255, 127);
-
-// Define colors for profile avatar
   static const Color outerAvatarColor = Color.fromARGB(255, 30, 28, 28);
-
-// Colors for the Edit Profile button in Dark Mode
   static const Color buttonBackgroundColor = Color.fromARGB(255, 0, 255, 127);
-  // Adjust this color if needed
   static const Color buttonTextColor = Color.fromARGB(255, 0, 255, 127);
 
-// Drawer header style for consistency
+  // Drawer header style for consistency
   static const BoxDecoration drawerHeaderStyle = BoxDecoration(
     color: Color.fromARGB(255, 0, 200, 83),
   );
