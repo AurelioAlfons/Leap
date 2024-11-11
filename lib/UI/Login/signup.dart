@@ -14,24 +14,28 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = ThemeProvider.of(context);
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("Sign Up"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(screenWidth * 0.05),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: 160),
+              SizedBox(height: screenHeight * 0.15),
               TextFormField(
                 controller: _usernameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: "Username",
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(screenWidth * 0.02),
+                  ),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -40,12 +44,14 @@ class SignUpPage extends StatelessWidget {
                   return null;
                 },
               ),
-              const SizedBox(height: 16.0),
+              SizedBox(height: screenHeight * 0.02),
               TextFormField(
                 controller: _emailController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: "Email",
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(screenWidth * 0.02),
+                  ),
                 ),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
@@ -55,12 +61,14 @@ class SignUpPage extends StatelessWidget {
                   return null;
                 },
               ),
-              const SizedBox(height: 16.0),
+              SizedBox(height: screenHeight * 0.02),
               TextFormField(
                 controller: _passwordController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: "Password",
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(screenWidth * 0.02),
+                  ),
                 ),
                 obscureText: true,
                 validator: (value) {
@@ -70,10 +78,14 @@ class SignUpPage extends StatelessWidget {
                   return null;
                 },
               ),
-              const SizedBox(height: 24.0),
+              SizedBox(height: screenHeight * 0.03),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16)),
+                  padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(screenWidth * 0.02),
+                  ),
+                ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // Process sign-up logic here
@@ -87,9 +99,10 @@ class SignUpPage extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge
-                      ?.copyWith(fontSize: 18),
+                      ?.copyWith(fontSize: screenWidth * 0.05),
                 ),
               ),
+              SizedBox(height: screenHeight * 0.02),
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/');
@@ -97,12 +110,12 @@ class SignUpPage extends StatelessWidget {
                 child: Text(
                   "Already have an account? Log in",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontSize: 14,
+                        fontSize: screenWidth * 0.04,
                         color: Colors.grey,
                       ),
                 ),
               ),
-              const SizedBox(height: 100),
+              SizedBox(height: screenHeight * 0.1),
               IconButton(
                 icon: Icon(
                   themeProvider.isDarkMode
@@ -114,6 +127,7 @@ class SignUpPage extends StatelessWidget {
                     : LightMode.iconColor,
                 onPressed: themeProvider.toggleTheme,
                 tooltip: 'Toggle Theme',
+                iconSize: screenWidth * 0.08, // Scales icon size
               ),
             ],
           ),

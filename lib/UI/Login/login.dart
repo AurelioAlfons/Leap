@@ -10,17 +10,21 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = ThemeProvider.of(context);
 
+    // Get screen dimensions
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: 130),
+              SizedBox(height: screenHeight * 0.1),
               CircleAvatar(
-                radius: 50,
+                radius: screenWidth * 0.15,
                 backgroundColor: Colors.transparent,
                 child: Container(
                   decoration: const BoxDecoration(
@@ -32,43 +36,45 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: screenHeight * 0.02),
               Text(
                 'Welcome Back!',
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleLarge,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontSize: screenWidth * 0.06,
+                    ),
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: screenHeight * 0.04),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Email',
                   prefixIcon: const Icon(Icons.email),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(screenWidth * 0.02),
                   ),
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: screenHeight * 0.02),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Password',
                   prefixIcon: const Icon(Icons.lock),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(screenWidth * 0.02),
                   ),
                 ),
                 obscureText: true,
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: screenHeight * 0.03),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, '/home');
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(screenWidth * 0.02),
                   ),
                 ),
                 child: Text(
@@ -76,21 +82,21 @@ class LoginPage extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge
-                      ?.copyWith(fontSize: 18),
+                      ?.copyWith(fontSize: screenWidth * 0.05),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: screenHeight * 0.02),
               TextButton(
                 onPressed: () {},
                 child: Text(
                   'Forgot Password?',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontSize: 14,
+                        fontSize: screenWidth * 0.04,
                         color: Colors.grey,
                       ),
                 ),
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: screenHeight * 0.01),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -107,12 +113,12 @@ class LoginPage extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium
-                          ?.copyWith(fontSize: 16),
+                          ?.copyWith(fontSize: screenWidth * 0.045),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 100),
+              SizedBox(height: screenHeight * 0.08),
               IconButton(
                 icon: Icon(
                   themeProvider.isDarkMode
@@ -124,6 +130,7 @@ class LoginPage extends StatelessWidget {
                     : LightMode.iconColor,
                 onPressed: themeProvider.toggleTheme,
                 tooltip: 'Toggle Theme',
+                iconSize: screenWidth * 0.08, // Scales icon size
               ),
             ],
           ),

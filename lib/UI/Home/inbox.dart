@@ -20,9 +20,9 @@ class InboxPage extends StatelessWidget {
           onEndDrawerPressed: () => Scaffold.of(context).openEndDrawer(),
           bottom: const TabBar(
             tabs: [
-              Tab(text: 'All'),
-              Tab(text: 'Approvals'),
-              Tab(text: 'Rejections'),
+              Tab(text: 'Check'),
+              Tab(text: 'Finalized'),
+              Tab(text: 'Pending'),
             ],
           ),
         ),
@@ -31,7 +31,7 @@ class InboxPage extends StatelessWidget {
             NotificationList(
               items: [
                 {
-                  'category': 'Rejection',
+                  'category': 'Pending',
                   'title': 'UI/UX Designer',
                   'companyName': 'CoinJar',
                   'location': 'Melbourne, Victoria',
@@ -39,7 +39,7 @@ class InboxPage extends StatelessWidget {
                   'date': 'Nov 28'
                 },
                 {
-                  'category': 'Rejection',
+                  'category': 'Pending',
                   'title': 'Business Analyst',
                   'companyName': 'DiDi',
                   'location': 'Melbourne, Victoria, Australia',
@@ -47,7 +47,7 @@ class InboxPage extends StatelessWidget {
                   'date': 'Nov 26'
                 },
                 {
-                  'category': 'Approval',
+                  'category': 'Finalized',
                   'title': 'Software Engineer',
                   'companyName': 'Infosys',
                   'location': 'Melbourne, Victoria, Australia',
@@ -55,7 +55,7 @@ class InboxPage extends StatelessWidget {
                   'date': 'Oct 26'
                 },
                 {
-                  'category': 'Approval',
+                  'category': 'Finalized',
                   'title': 'IT Helpdesk Guru',
                   'companyName': 'Bayside Group',
                   'location': 'Somerton, Victoria, Australia',
@@ -71,7 +71,7 @@ class InboxPage extends StatelessWidget {
                   'date': 'Oct 11'
                 },
                 {
-                  'category': 'Approval',
+                  'category': 'Finalized',
                   'title': 'Digital Platforms IBL',
                   'companyName': 'Mercedes-Benz',
                   'location': 'Mulgrave, Victoria, Australia',
@@ -79,7 +79,7 @@ class InboxPage extends StatelessWidget {
                   'date': 'Oct 04'
                 },
                 {
-                  'category': 'Rejection',
+                  'category': 'Pending',
                   'title': 'IT Project Manager',
                   'companyName': 'Eightfold Institute',
                   'location': 'Carlton, Victoria, Australia',
@@ -91,7 +91,7 @@ class InboxPage extends StatelessWidget {
             NotificationList(
               items: [
                 {
-                  'category': 'Approval',
+                  'category': 'Finalized',
                   'title': 'Software Engineer',
                   'companyName': 'Infosys',
                   'location': 'Melbourne, Victoria, Australia',
@@ -99,7 +99,7 @@ class InboxPage extends StatelessWidget {
                   'date': 'Oct 26'
                 },
                 {
-                  'category': 'Approval',
+                  'category': 'Finalized',
                   'title': 'IT Helpdesk Guru',
                   'companyName': 'Bayside Group',
                   'location': 'Somerton, Victoria, Australia',
@@ -107,7 +107,7 @@ class InboxPage extends StatelessWidget {
                   'date': 'Oct 15'
                 },
                 {
-                  'category': 'Approval',
+                  'category': 'Finalized',
                   'title': 'Digital Platforms IBL',
                   'companyName': 'Mercedez-Benz',
                   'location': 'Mulgrave, Victoria, Australia',
@@ -119,7 +119,7 @@ class InboxPage extends StatelessWidget {
             NotificationList(
               items: [
                 {
-                  'category': 'Rejection',
+                  'category': 'Pending',
                   'title': 'UI/UX Designer',
                   'companyName': 'CoinJar',
                   'location': 'Melbourne, Victoria',
@@ -127,7 +127,7 @@ class InboxPage extends StatelessWidget {
                   'date': 'Nov 28'
                 },
                 {
-                  'category': 'Rejection',
+                  'category': 'Pending',
                   'title': 'Business Analyst',
                   'companyName': 'DiDi',
                   'location': 'Melbourne, Victoria, Austrlia',
@@ -135,7 +135,7 @@ class InboxPage extends StatelessWidget {
                   'date': 'Nov 26'
                 },
                 {
-                  'category': 'Rejection',
+                  'category': 'Pending',
                   'title': 'IT Project Manager',
                   'companyName': 'Eightfold Institue',
                   'location': 'Carlton, Victoria, Australia',

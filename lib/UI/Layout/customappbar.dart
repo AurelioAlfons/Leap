@@ -9,6 +9,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   // Callbacks for menu and end drawer actions
   final VoidCallback? onMenuPressed;
   final VoidCallback? onEndDrawerPressed;
+  final VoidCallback? onTitleTapped; // New callback for title tap
   final PreferredSizeWidget? bottom;
 
   const CustomAppBar({
@@ -18,55 +19,56 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showDropdown = true,
     this.onMenuPressed,
     this.onEndDrawerPressed,
+    this.onTitleTapped, // Initialize the new callback
     this.bottom,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      // Conditionally shows title with dropdown menu or just title
-      title: showDropdown
-          ? PopupMenuButton<String>(
-              onSelected: (value) {
-                // Handle selected item
-                // ignore: avoid_print
-                print(value);
-              },
-              offset: const Offset(0, 30),
-              padding: EdgeInsets.zero,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(title),
-                  const Icon(Icons.arrow_drop_down_outlined),
-                ],
-              ),
-
-              // Dropdown menu items
-              itemBuilder: (BuildContext context) {
-                return <PopupMenuEntry<String>>[
-                  const PopupMenuItem<String>(
-                    value: 'Home',
-                    child: Row(
-                      children: [
-                        Icon(Icons.home_rounded),
-                        Text('   Home'),
-                      ],
+      title: GestureDetector(
+        onTap: onTitleTapped, // Call onTitleTapped when title is tapped
+        child: showDropdown
+            ? PopupMenuButton<String>(
+                onSelected: (value) {
+                  // Handle selected item
+                  // ignore: avoid_print
+                  print(value); // Replace with your desired logic
+                },
+                offset: const Offset(0, 30),
+                padding: EdgeInsets.zero,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(title),
+                    const Icon(Icons.arrow_drop_down_outlined),
+                  ],
+                ),
+                itemBuilder: (BuildContext context) {
+                  return <PopupMenuEntry<String>>[
+                    const PopupMenuItem<String>(
+                      value: 'Home',
+                      child: Row(
+                        children: [
+                          Icon(Icons.home_rounded),
+                          Text('   Home'),
+                        ],
+                      ),
                     ),
-                  ),
-                  const PopupMenuItem<String>(
-                    value: 'Popular',
-                    child: Row(
-                      children: [
-                        Icon(Icons.data_exploration_rounded),
-                        Text('   Popular'),
-                      ],
+                    const PopupMenuItem<String>(
+                      value: 'Popular',
+                      child: Row(
+                        children: [
+                          Icon(Icons.data_exploration_rounded),
+                          Text('   Popular'),
+                        ],
+                      ),
                     ),
-                  ),
-                ];
-              },
-            )
-          : Text(title),
+                  ];
+                },
+              )
+            : Text(title),
+      ),
 
       // Leading icon button to open the main drawer
       leading: IconButton(
@@ -78,7 +80,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         if (showSearchButton)
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              // Implement search action here if needed
+            },
             icon: const Icon(Icons.search_rounded),
           ),
         IconButton(
