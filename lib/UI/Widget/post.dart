@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:leap/UI/Layout/dark.dart';
 import 'package:leap/UI/Layout/light.dart';
+import 'package:leap/UI/Widget/apply.dart';
 import 'package:leap/UI/Widget/bottomsheet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -288,7 +289,12 @@ class _InternshipPostState extends State<InternshipPost> {
                 ),
                 // Apply Button with Icon
                 ElevatedButton.icon(
-                  onPressed: widget.onApply,
+                  onPressed: () {
+                    showApplyConfirmationDialog(
+                      context: context,
+                      onConfirm: widget.onApply,
+                    );
+                  },
                   icon: Icon(
                     Icons.check_circle,
                     color: Theme.of(context).brightness == Brightness.dark
