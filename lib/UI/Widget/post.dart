@@ -10,6 +10,7 @@ class InternshipPost extends StatefulWidget {
   final Widget media;
   final String positionName;
   final List<String> keySkills;
+  final String date; // Add date parameter
   final VoidCallback onApply;
   final bool initialMatchExperience;
 
@@ -21,6 +22,7 @@ class InternshipPost extends StatefulWidget {
     required this.media,
     required this.positionName,
     required this.keySkills,
+    required this.date, // Initialize date parameter
     required this.onApply,
     this.initialMatchExperience = false,
   });
@@ -123,7 +125,7 @@ class _InternshipPostState extends State<InternshipPost> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Company Logo, Name, and Location
+            // Company Logo, Name, Location, and Date
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -149,14 +151,14 @@ class _InternshipPostState extends State<InternshipPost> {
                     ],
                   ),
                 ),
-                IconButton(
-                  icon: Icon(
-                    matchExperience
-                        ? Icons.check_circle
-                        : Icons.check_circle_outline,
-                    color: matchExperience ? Colors.green : Colors.grey,
-                  ),
-                  onPressed: toggleMatchExperience,
+                // Date Display
+                Text(
+                  widget.date,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      ),
                 ),
               ],
             ),
