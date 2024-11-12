@@ -93,6 +93,67 @@ class HomePage extends StatelessWidget {
         salary: '\$20/hour', // Example salary
         link: 'https://www.mercedes-benz.com/', // Example link
       ),
+      InternshipPost(
+        companyName: 'DiDi',
+        location: 'Melbourne, Victoria, Australia',
+        companyLogo: const AssetImage('assets/icon/didi.png'),
+        media: Image.network(
+          'https://i0.wp.com/opportunitiesforyouth.org/wp-content/uploads/2024/09/Screenshot-2024-09-26-002030.png?resize=1278%2C640&ssl=1',
+        ),
+        positionName: 'Business Analyst',
+        description:
+            'A great opportunity to work with cutting-edge technology.',
+        keySkills: const ['Data Analysis', 'Business Intelligence', 'SQL'],
+        onApply: () {
+          // Handle apply action for DiDi
+        },
+        initialMatchExperience: true,
+        date: 'Oct 26, 2024', // Added date
+        salary: '\$20/hour', // Example salary
+        link: 'https://www.mercedes-benz.com/', // Example link
+      ),
+      InternshipPost(
+        companyName: 'Infosys',
+        location: 'Melbourne, Victoria, Australia',
+        companyLogo: const AssetImage('assets/icon/infosys.jpg'),
+        media: Image.network(
+          'https://i0.wp.com/opportunitiesforyouth.org/wp-content/uploads/2024/09/Screenshot-2024-09-26-002030.png?resize=1278%2C640&ssl=1',
+        ),
+        positionName: 'Software Engineer',
+        description:
+            'A great opportunity to work with cutting-edge technology.',
+        keySkills: const ['Java', 'Spring Boot', 'REST APIs'],
+        onApply: () {
+          // Handle apply action for Infosys
+        },
+        initialMatchExperience: false,
+        date: 'Oct 15, 2024', // Added date
+        salary: '\$20/hour', // Example salary
+        link: 'https://www.mercedes-benz.com/', // Example link
+      ),
+      InternshipPost(
+        companyName: 'Eightfold Institute',
+        location: 'Carlton, Victoria, Australia',
+        companyLogo: const AssetImage('assets/icon/eightfold.png'),
+        media: Image.network(
+          'https://i0.wp.com/opportunitiesforyouth.org/wp-content/uploads/2024/09/Screenshot-2024-09-26-002030.png?resize=1278%2C640&ssl=1',
+        ),
+        positionName: 'IT Project Manager',
+        description:
+            'A great opportunity to work with cutting-edge technology.',
+        keySkills: const [
+          'Project Management',
+          'Agile',
+          'Stakeholder Communication'
+        ],
+        onApply: () {
+          // Handle apply action for Eightfold Institute
+        },
+        initialMatchExperience: true,
+        date: 'Sep 20, 2024', // Added date
+        salary: '\$20/hour', // Example salary
+        link: 'https://www.mercedes-benz.com/', // Example link
+      ),
     ];
 
     return Scaffold(

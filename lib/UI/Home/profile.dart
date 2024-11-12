@@ -67,16 +67,19 @@ class ProfilePage extends StatelessWidget {
                         },
                         icon: Icon(
                           Icons.edit,
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? DarkMode.buttonTextColor
-                              : LightMode.buttonTextColor,
+                          color: Theme.of(context)
+                              .iconTheme
+                              .color, // Matches icon color to the theme
                           size: screenWidth * 0.05,
                         ),
                         label: Text(
                           "Edit Profile",
                           style:
                               Theme.of(context).textTheme.titleLarge?.copyWith(
-                                    color: textColor,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.color, // Matches text color to theme
                                     fontSize: screenWidth * 0.04,
                                   ),
                         ),
@@ -86,11 +89,16 @@ class ProfilePage extends StatelessWidget {
                                 BorderRadius.circular(screenWidth * 0.05),
                           ),
                           padding: EdgeInsets.symmetric(
-                              horizontal: screenWidth * 0.08,
-                              vertical: screenHeight * 0.015),
+                            horizontal: screenWidth * 0.08,
+                            vertical: screenHeight * 0.015,
+                          ),
+                          backgroundColor: Theme.of(context)
+                              .buttonTheme
+                              .colorScheme
+                              ?.surface,
                           elevation: 4,
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),
