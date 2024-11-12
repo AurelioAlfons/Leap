@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:leap/UI/Layout/dark.dart';
 import 'package:leap/UI/Layout/light.dart';
+import 'package:leap/UI/Widget/bottomsheet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class InternshipPost extends StatefulWidget {
@@ -11,7 +12,9 @@ class InternshipPost extends StatefulWidget {
   final String positionName;
   final List<String> keySkills;
   final String date;
-  final String description; // New description parameter
+  final String description;
+  final String salary;
+  final String link;
   final VoidCallback onApply;
   final bool initialMatchExperience;
 
@@ -24,7 +27,9 @@ class InternshipPost extends StatefulWidget {
     required this.positionName,
     required this.keySkills,
     required this.date,
-    required this.description, // Initialize description parameter
+    required this.description,
+    required this.salary,
+    required this.link,
     required this.onApply,
     this.initialMatchExperience = false,
   });
@@ -153,7 +158,6 @@ class _InternshipPostState extends State<InternshipPost> {
                     ],
                   ),
                 ),
-                // Date Display
                 Text(
                   widget.date,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -175,16 +179,67 @@ class _InternshipPostState extends State<InternshipPost> {
             ),
             const SizedBox(height: 16),
             // Position Name and Brief Description
-            Text(
-              widget.positionName,
-              style: Theme.of(context).textTheme.headlineSmall,
+            GestureDetector(
+              onTap: () {
+                showReusableBottomSheet(
+                  context: context,
+                  title: widget.positionName,
+                  subtitle: widget.companyName,
+                  description: widget.description,
+                  location: widget.location,
+                  salary: widget.salary,
+                  skills: widget.keySkills,
+                  onApply: widget.onApply,
+                );
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.positionName,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    widget.description,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 8),
-            Text(
-              widget.description,
-              style: Theme.of(context).textTheme.bodyMedium,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+            // Salary, Hours, and Link Section
+            Row(
+              children: [
+                Icon(Icons.attach_money,
+                    color: Theme.of(context).iconTheme.color),
+                const SizedBox(width: 15),
+                Text(
+                  widget.salary,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Icon(Icons.link, color: Theme.of(context).iconTheme.color),
+                const SizedBox(width: 15),
+                GestureDetector(
+                  onTap: () {
+                    // Open link functionality
+                  },
+                  child: Text(
+                    "Visit Website",
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Colors.blue,
+                          decoration: TextDecoration.underline,
+                        ),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 14),
             // Key Skills Section (Horizontal Scrollable)
@@ -192,15 +247,13 @@ class _InternshipPostState extends State<InternshipPost> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: widget.keySkills.map((skill) {
-                  IconData skillIcon = Icons.code; // default icon for skills
+                  IconData skillIcon = Icons.code;
                   if (skill.toLowerCase() == 'flutter') {
                     skillIcon = Icons.flutter_dash;
                   }
                   if (skill.toLowerCase() == 'firebase') {
                     skillIcon = Icons.cloud;
                   }
-                  // Add more specific icons if needed
-
                   return Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: _buildSkillCard(skill, skillIcon, context),
@@ -239,32 +292,25 @@ class _InternshipPostState extends State<InternshipPost> {
                   icon: Icon(
                     Icons.check_circle,
                     color: Theme.of(context).brightness == Brightness.dark
-                        ? DarkMode
-                            .buttonTextColor // Black icon color in dark mode
-                        : LightMode
-                            .buttonTextColor, // White icon color in light mode
+                        ? DarkMode.buttonTextColor
+                        : LightMode.buttonTextColor,
                   ),
                   label: Text(
                     "Apply",
                     style: TextStyle(
                       color: Theme.of(context).brightness == Brightness.dark
-                          ? DarkMode
-                              .buttonTextColor // Black text color in dark mode
-                          : LightMode
-                              .buttonTextColor, // White text color in light mode
+                          ? DarkMode.buttonTextColor
+                          : LightMode.buttonTextColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).brightness ==
-                            Brightness.dark
-                        ? DarkMode
-                            .buttonBackgroundColor // Green background in dark mode
-                        : LightMode
-                            .buttonBackgroundColor, // Green background in light mode
+                    backgroundColor:
+                        Theme.of(context).brightness == Brightness.dark
+                            ? DarkMode.buttonBackgroundColor
+                            : LightMode.buttonBackgroundColor,
                     shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(20), // Rounded corners
+                      borderRadius: BorderRadius.circular(20),
                     ),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 12),
