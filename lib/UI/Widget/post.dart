@@ -10,7 +10,8 @@ class InternshipPost extends StatefulWidget {
   final Widget media;
   final String positionName;
   final List<String> keySkills;
-  final String date; // Add date parameter
+  final String date;
+  final String description; // New description parameter
   final VoidCallback onApply;
   final bool initialMatchExperience;
 
@@ -22,7 +23,8 @@ class InternshipPost extends StatefulWidget {
     required this.media,
     required this.positionName,
     required this.keySkills,
-    required this.date, // Initialize date parameter
+    required this.date,
+    required this.description, // Initialize description parameter
     required this.onApply,
     this.initialMatchExperience = false,
   });
@@ -146,7 +148,7 @@ class _InternshipPostState extends State<InternshipPost> {
                       Text(
                         widget.location,
                         style: Theme.of(context).textTheme.bodyMedium,
-                        overflow: TextOverflow.visible, // Allow wrapping
+                        overflow: TextOverflow.visible,
                       ),
                     ],
                   ),
@@ -172,10 +174,17 @@ class _InternshipPostState extends State<InternshipPost> {
               ),
             ),
             const SizedBox(height: 16),
-            // Position Name
+            // Position Name and Brief Description
             Text(
               widget.positionName,
               style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              widget.description,
+              style: Theme.of(context).textTheme.bodyMedium,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 14),
             // Key Skills Section (Horizontal Scrollable)
