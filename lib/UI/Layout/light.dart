@@ -5,7 +5,6 @@ class LightMode {
     return ThemeData(
       brightness: Brightness.light,
       scaffoldBackgroundColor: const Color(0xFFF5EAD7),
-
       shadowColor: const Color.fromARGB(255, 238, 181, 77),
 
       // AppBar theme
@@ -125,10 +124,11 @@ class LightMode {
   // Define colors for profile avatar
   static const Color outerAvatarColor = Color(0xFFF5EAD7);
 
-  // Colors for the Edit Profile button in Dark Mode
-  static const Color buttonBackgroundColor = Color(0xFF007A5E);
-  // Adjust this color if needed
-  static const Color buttonTextColor = Color(0xFF007A5E);
+  // Colors for the "Apply" button in Light Mode
+  static const Color buttonBackgroundColor =
+      Color(0xFF007A5E); // Green background
+  static const Color buttonTextColor =
+      Colors.white; // White text/icon color for light mode
 
   // Drawer header style for consistency
   static const BoxDecoration drawerHeaderStyle = BoxDecoration(

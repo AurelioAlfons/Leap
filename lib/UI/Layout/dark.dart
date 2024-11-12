@@ -119,11 +119,17 @@ class DarkMode {
     );
   }
 
-  // Custom colors
-  static const Color iconColor = Color.fromARGB(255, 0, 255, 127);
-  static const Color outerAvatarColor = Color.fromARGB(255, 30, 28, 28);
-  static const Color buttonBackgroundColor = Color.fromARGB(255, 0, 255, 127);
-  static const Color buttonTextColor = Color.fromARGB(255, 0, 255, 127);
+  // Custom colors for the dark theme
+  static const Color iconColor =
+      Color.fromARGB(255, 0, 255, 127); // Icon color in the dark mode
+  static const Color outerAvatarColor =
+      Color.fromARGB(255, 30, 28, 28); // Profile avatar background
+
+  // Button colors for the dark mode
+  static const Color buttonBackgroundColor =
+      Color.fromARGB(255, 0, 255, 127); // Green button background color
+  static const Color buttonTextColor =
+      Colors.black; // Black text and icon color on green button
 
   // Drawer header style for consistency
   static const BoxDecoration drawerHeaderStyle = BoxDecoration(

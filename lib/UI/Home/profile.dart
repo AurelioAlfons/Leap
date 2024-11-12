@@ -48,7 +48,6 @@ class ProfilePage extends StatelessWidget {
                   bottom: -screenHeight * 0.1,
                   child: Column(
                     children: [
-                      // Profile Picture
                       CircleAvatar(
                         radius: screenWidth * 0.15,
                         backgroundColor:
@@ -62,7 +61,6 @@ class ProfilePage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: screenHeight * 0.01),
-                      // Edit Profile Button
                       ElevatedButton.icon(
                         onPressed: () {
                           // Edit Profile Logic
@@ -98,14 +96,48 @@ class ProfilePage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: screenHeight * 0.12),
+            SizedBox(height: screenHeight * 0.15), // Adjust spacing for overlap
 
-            // Key Skills Section
+            // Name and Profile Description Section with Divider
             Padding(
               padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Name and Title
+                  Center(
+                    child: Column(
+                      children: [
+                        Text(
+                          "Bertram Gilfoyle",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall
+                              ?.copyWith(
+                                color: textColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: screenWidth * 0.06,
+                              ),
+                        ),
+                        SizedBox(height: screenHeight * 0.005),
+                        Text(
+                          "Mobile App Developer | UI/UX Designer", // Replace with actual title
+                          style:
+                              Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                    color: textColor.withOpacity(0.7),
+                                    fontSize: screenWidth * 0.045,
+                                  ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.02),
+                  Divider(
+                      thickness: 1,
+                      color: textColor.withOpacity(0.2)), // Top Divider
+                  SizedBox(height: screenHeight * 0.02),
+
+                  // Key Skills Section
                   Text(
                     'Key Skills',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -128,6 +160,10 @@ class ProfilePage extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(height: screenHeight * 0.02),
+                  Divider(
+                      thickness: 1,
+                      color: textColor.withOpacity(0.2)), // Bottom Divider
                   SizedBox(height: screenHeight * 0.025),
                   // Additional Profile Information
                   _buildSectionTitle(
@@ -240,8 +276,8 @@ class ProfilePage extends StatelessWidget {
       title: Text(
         title,
         style: TextStyle(color: textColor, fontSize: screenWidth * 0.04),
-        overflow: TextOverflow.ellipsis, // Ensures text doesn't overflow
-        maxLines: 1, // Limits text to one line
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
       ),
       subtitle: Text(
         subtitle,
