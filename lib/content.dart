@@ -72,7 +72,13 @@ class _AppNavigation extends State<MainApp> {
                     'Settings',
                     style: TextStyle(fontSize: 24),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      '/settings',
+                      (Route<dynamic> route) => false,
+                    );
+                  },
                 ),
               ),
               IconButton(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:leap/UI/Layout/customappbar.dart';
 import 'package:leap/UI/Widget/post.dart';
-import 'package:leap/UI/Widget/saveitem.dart'; // Import InternshipPost model
+import 'package:leap/UI/Widget/saveitem.dart';
 
 class SavePage extends StatelessWidget {
   const SavePage({super.key});

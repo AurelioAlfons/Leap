@@ -4,6 +4,7 @@ import 'package:leap/UI/Layout/dark.dart';
 import 'package:leap/UI/Layout/light.dart';
 import 'package:leap/UI/Login/login.dart';
 import 'package:leap/UI/Login/signup.dart';
+import 'package:leap/UI/Settings/settings.dart';
 import 'package:leap/content.dart';
 
 void main() {
@@ -39,6 +40,7 @@ class _MyAppState extends State<MyApp> {
           '/': (context) => const LoginPage(),
           '/home': (context) => const MainApp(),
           '/signup': (context) => SignUpPage(),
+          '/settings': (context) => const SettingsPage(),
         },
       ),
     );
