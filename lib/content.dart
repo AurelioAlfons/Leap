@@ -51,13 +51,44 @@ class _AppNavigation extends State<MainApp> {
           Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
-              children: const [
-                DrawerHeader(
-                  decoration: DarkMode.drawerHeaderStyle,
-                  child: Text(
-                    'Right Menu',
-                    style: TextStyle(color: Colors.white, fontSize: 24),
-                  ),
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.person),
+                  title: const Text('Account', style: TextStyle(fontSize: 18)),
+                  trailing:
+                      const Icon(Icons.arrow_forward_ios), // Trailing icon
+                  onTap: () {
+                    // Navigate to Account settings
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.contact_mail),
+                  title:
+                      const Text('Contact us', style: TextStyle(fontSize: 18)),
+                  trailing:
+                      const Icon(Icons.arrow_forward_ios), // Trailing icon
+                  onTap: () {
+                    // Navigate to Contact us page
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.group),
+                  title: const Text('Social Media',
+                      style: TextStyle(fontSize: 18)),
+                  trailing:
+                      const Icon(Icons.arrow_forward_ios), // Trailing icon
+                  onTap: () {
+                    // Navigate to Social Media settings
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.location_on),
+                  title: const Text('Location', style: TextStyle(fontSize: 18)),
+                  trailing:
+                      const Icon(Icons.arrow_forward_ios), // Trailing icon
+                  onTap: () {
+                    // Navigate to Location settings
+                  },
                 ),
               ],
             ),

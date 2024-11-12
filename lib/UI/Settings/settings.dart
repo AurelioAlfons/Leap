@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:leap/UI/Layout/dark.dart';
+import 'package:leap/UI/Layout/light.dart';
 import 'package:leap/UI/Layout/themeprovider.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -11,79 +13,111 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPage extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    // Access ThemeProvider to get isDarkMode and toggleTheme
     final themeProvider = ThemeProvider.of(context);
-    final isDarkMode = themeProvider.isDarkMode;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
+        actions: [
+          IconButton(
+            icon: Icon(
+              themeProvider.isDarkMode
+                  ? Icons.brightness_4
+                  : Icons.brightness_4_outlined,
+              color: themeProvider.isDarkMode
+                  ? DarkMode.iconColor
+                  : LightMode.iconColor,
+            ),
+            onPressed: themeProvider.toggleTheme,
+            tooltip: 'Toggle Theme',
+          ),
+        ],
         leading: IconButton(
           icon: const Icon(Icons.keyboard_backspace),
           onPressed: () {
-            Navigator.pushNamed(context, '/home'); // Navigates to '/home'
+            Navigator.pushNamed(context, '/home');
           },
         ),
       ),
       body: ListView(
         children: [
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Account'),
-            trailing: const Icon(Icons.arrow_forward_ios), // Trailing icon
-            onTap: () {
-              // Navigate to Account settings
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.contact_mail),
-            title: const Text('Contact us'),
-            trailing: const Icon(Icons.arrow_forward_ios), // Trailing icon
-            onTap: () {
-              // Navigate to Contact us page
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.color_lens),
-            title: const Text('Appearance'),
-            trailing: const Icon(Icons.arrow_forward_ios), // Trailing icon
-            onTap: () {
-              // Navigate to Appearance settings
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.group),
-            title: const Text('Social Media'),
-            trailing: const Icon(Icons.arrow_forward_ios), // Trailing icon
-            onTap: () {
-              // Navigate to Social Media settings
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.location_on),
-            title: const Text('Location'),
-            trailing: const Icon(Icons.arrow_forward_ios), // Trailing icon
-            onTap: () {
-              // Navigate to Location settings
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.brightness_6),
-            title: const Text('Dark Mode'),
-            trailing: Switch(
-              value: isDarkMode,
-              onChanged: (value) {
-                themeProvider.toggleTheme(); // Toggle theme using provider
-              },
-              activeColor: isDarkMode
-                  ? const Color.fromARGB(255, 0, 255, 127)
-                  : const Color.fromARGB(255, 0, 255,
-                      127), // Customize active color based on theme
-              inactiveThumbColor: isDarkMode
-                  ? const Color(0xFF007A5E)
-                  : const Color(0xFF007A5E),
+          // About Section
+          const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'About',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            onTap: themeProvider.toggleTheme,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'Learn more about our policies, user agreements, and acknowledgments.',
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // Content Policies Section
+          ListTile(
+            leading: const Icon(Icons.policy),
+            title: const Text('Content Policy'),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              // Navigate to Content Policy page
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.privacy_tip),
+            title: const Text('Privacy Policy'),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              // Navigate to Privacy Policy page
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.gavel),
+            title: const Text('User Agreement'),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              // Navigate to User Agreement page
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.thumb_up),
+            title: const Text('Acknowledgements'),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              // Navigate to Acknowledgements page
+            },
+          ),
+
+          // Divider between sections
+          const Divider(thickness: 1, height: 32),
+
+          // Support Section
+          const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'Support',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.help_center),
+            title: const Text('Help Center'),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              // Navigate to Help Center
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.report_problem),
+            title: const Text('Report an Issue'),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              // Navigate to Report an Issue page
+            },
           ),
         ],
       ),
