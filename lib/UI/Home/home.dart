@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
         location: 'Mulgrave, Victoria, Australia',
         companyLogo: const AssetImage('assets/icon/merce.jpg'),
         media: Image.network(
-          'https://i0.wp.com/opportunitiesforyouth.org/wp-content/uploads/2024/09/Screenshot-2024-09-26-002030.png?resize=1278%2C640&ssl=1',
+          'https://www.freshersnow.com/wp-content/uploads/2023/01/Mercedes-Benz-Internship.webp',
         ),
         positionName: 'Digital Platforms IBL',
         description:
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
         },
         initialMatchExperience: true,
         date: 'Oct 04, 2024',
-        salary: '\$20/hour',
+        salary: '\$25/hour',
         link: 'https://www.mercedes-benz.com/',
       ),
       InternshipPost(
@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
         location: 'Melbourne, Victoria',
         companyLogo: const AssetImage('assets/icon/coinjar.png'),
         media: Image.network(
-          'https://i0.wp.com/opportunitiesforyouth.org/wp-content/uploads/2024/09/Screenshot-2024-09-26-002030.png?resize=1278%2C640&ssl=1',
+          'https://www.marketswiki.com/wiki/images/8/87/CoinJarpic.png',
         ),
         positionName: 'UI/UX Designer',
         description:
@@ -90,7 +90,7 @@ class HomePage extends StatelessWidget {
         },
         initialMatchExperience: false,
         date: 'Nov 26, 2024',
-        salary: '\$20/hour', // Example salary
+        salary: '\$29/hour', // Example salary
         link: 'https://www.mercedes-benz.com/', // Example link
       ),
       InternshipPost(
@@ -98,7 +98,7 @@ class HomePage extends StatelessWidget {
         location: 'Melbourne, Victoria, Australia',
         companyLogo: const AssetImage('assets/icon/didi.png'),
         media: Image.network(
-          'https://i0.wp.com/opportunitiesforyouth.org/wp-content/uploads/2024/09/Screenshot-2024-09-26-002030.png?resize=1278%2C640&ssl=1',
+          'https://pbs.twimg.com/media/EBMDf-OUYAAmchl.jpg:large',
         ),
         positionName: 'Business Analyst',
         description:
@@ -109,7 +109,7 @@ class HomePage extends StatelessWidget {
         },
         initialMatchExperience: true,
         date: 'Oct 26, 2024', // Added date
-        salary: '\$20/hour', // Example salary
+        salary: '\$24/hour', // Example salary
         link: 'https://www.mercedes-benz.com/', // Example link
       ),
       InternshipPost(
@@ -117,7 +117,7 @@ class HomePage extends StatelessWidget {
         location: 'Melbourne, Victoria, Australia',
         companyLogo: const AssetImage('assets/icon/infosys.jpg'),
         media: Image.network(
-          'https://i0.wp.com/opportunitiesforyouth.org/wp-content/uploads/2024/09/Screenshot-2024-09-26-002030.png?resize=1278%2C640&ssl=1',
+          'https://media.licdn.com/dms/image/v2/D5612AQEaBJTzRut4-Q/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1727954905119?e=2147483647&v=beta&t=d8p6si3TGJ-XwjSkI_gJeDe_wDytNvwGiXAFfFobzW8',
         ),
         positionName: 'Software Engineer',
         description:
@@ -128,7 +128,7 @@ class HomePage extends StatelessWidget {
         },
         initialMatchExperience: false,
         date: 'Oct 15, 2024', // Added date
-        salary: '\$20/hour', // Example salary
+        salary: '\$35/hour', // Example salary
         link: 'https://www.mercedes-benz.com/', // Example link
       ),
       InternshipPost(
@@ -136,7 +136,7 @@ class HomePage extends StatelessWidget {
         location: 'Carlton, Victoria, Australia',
         companyLogo: const AssetImage('assets/icon/eightfold.png'),
         media: Image.network(
-          'https://i0.wp.com/opportunitiesforyouth.org/wp-content/uploads/2024/09/Screenshot-2024-09-26-002030.png?resize=1278%2C640&ssl=1',
+          'https://media.licdn.com/dms/image/v2/C4E1BAQFKbKLfBEMcvA/company-background_10000/company-background_10000/0/1584195149112/eightfoldinstituteofaustralia_cover?e=2147483647&v=beta&t=RGuE3y7znGvxrBQapfXJ3SPB_QnzZteG76HFBLDven0',
         ),
         positionName: 'IT Project Manager',
         description:
@@ -151,7 +151,7 @@ class HomePage extends StatelessWidget {
         },
         initialMatchExperience: true,
         date: 'Sep 20, 2024', // Added date
-        salary: '\$20/hour', // Example salary
+        salary: '\$32/hour', // Example salary
         link: 'https://www.mercedes-benz.com/', // Example link
       ),
     ];
