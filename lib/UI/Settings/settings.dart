@@ -32,12 +32,6 @@ class _SettingsPage extends State<SettingsPage> {
             tooltip: 'Toggle Theme',
           ),
         ],
-        leading: IconButton(
-          icon: const Icon(Icons.keyboard_backspace),
-          onPressed: () {
-            Navigator.pushNamed(context, '/home');
-          },
-        ),
       ),
       body: ListView(
         children: [

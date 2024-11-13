@@ -145,7 +145,7 @@ class LoginPage extends StatelessWidget {
                       ),
                 ),
               ),
-              SizedBox(height: screenHeight * 0.08),
+              SizedBox(height: screenHeight * 0.04),
               IconButton(
                 icon: Icon(
                   themeProvider.isDarkMode

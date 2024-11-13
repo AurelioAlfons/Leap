@@ -157,10 +157,9 @@ class _BusinessPageState extends State<BusinessPage> {
                     style: TextStyle(fontSize: 24),
                   ),
                   onTap: () {
-                    Navigator.pushNamedAndRemoveUntil(
+                    Navigator.pushNamed(
                       context,
                       '/settings',
-                      (Route<dynamic> route) => false,
                     );
                   },
                 ),

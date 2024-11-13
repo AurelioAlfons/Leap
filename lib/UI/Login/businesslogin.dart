@@ -22,7 +22,7 @@ class BusinessLoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(height: screenHeight * 0.05),
+              SizedBox(height: screenHeight * 0.02),
 
               // Highlighted Title
               Column(
@@ -194,7 +194,7 @@ class BusinessLoginPage extends StatelessWidget {
                   const Expanded(child: Divider()),
                 ],
               ),
-              SizedBox(height: screenHeight * 0.04),
+              SizedBox(height: screenHeight * 0.01),
 
               // "Login through Main App" Button
               OutlinedButton(
@@ -224,7 +224,7 @@ class BusinessLoginPage extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: screenHeight * 0.04),
+              SizedBox(height: screenHeight * 0.02),
 
               // Theme Toggle Button
               Center(
