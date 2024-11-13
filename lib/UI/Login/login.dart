@@ -118,6 +118,33 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: screenHeight * 0.04),
+              OutlinedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/business');
+                },
+                style: OutlinedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
+                  side: BorderSide(
+                    color: themeProvider.isDarkMode
+                        ? DarkMode.iconColor
+                        : LightMode.iconColor,
+                    width: 1.5,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(screenWidth * 0.02),
+                  ),
+                ),
+                child: Text(
+                  'Login through Business App',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        fontSize: screenWidth * 0.045,
+                        color: themeProvider.isDarkMode
+                            ? DarkMode.iconColor
+                            : LightMode.iconColor,
+                      ),
+                ),
+              ),
               SizedBox(height: screenHeight * 0.08),
               IconButton(
                 icon: Icon(

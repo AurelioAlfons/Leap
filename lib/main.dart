@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leap/UI/Business/business.dart';
 import 'package:leap/UI/Drawer/map.dart';
 import 'package:leap/UI/Layout/themeprovider.dart';
 import 'package:leap/UI/Layout/dark.dart';
@@ -43,6 +44,7 @@ class _MyAppState extends State<MyApp> {
           '/signup': (context) => SignUpPage(),
           '/settings': (context) => const SettingsPage(),
           '/map': (context) => const MapPage(),
+          '/business': (context) => const BusinessPage(),
         },
       ),
     );
