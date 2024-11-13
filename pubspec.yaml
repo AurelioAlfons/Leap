@@ -14,6 +14,7 @@ dependencies:
   flutter_map: ^7.0.2
   location: ^7.0.1
   latlong2: ^0.9.1
+  flutter_svg: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +54,8 @@ flutter:
     - assets/icon/coinjar.png
     - assets/icon/redbull.png
     - assets/icon/terno.png
+    - assets/icon/instagram.svg
+    - assets/icon/twitter.svg
 
     - assets/image/bg.jpeg
 

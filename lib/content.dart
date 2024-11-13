@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:leap/UI/Home/dashboard.dart';
 import 'package:leap/UI/Home/home.dart';
 import 'package:leap/UI/Home/inbox.dart';
@@ -68,7 +69,8 @@ class _AppNavigation extends State<MainApp> {
                 ),
                 ListTile(
                   leading: const Icon(Icons.person),
-                  title: const Text('Account', style: TextStyle(fontSize: 18)),
+                  title: const Text('Billing Account',
+                      style: TextStyle(fontSize: 18)),
                   trailing:
                       const Icon(Icons.arrow_forward_ios), // Trailing icon
                   onTap: () {
@@ -76,23 +78,13 @@ class _AppNavigation extends State<MainApp> {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.contact_mail),
-                  title:
-                      const Text('Contact us', style: TextStyle(fontSize: 18)),
-                  trailing:
-                      const Icon(Icons.arrow_forward_ios), // Trailing icon
-                  onTap: () {
-                    // Navigate to Contact us page
-                  },
-                ),
-                ListTile(
                   leading: const Icon(Icons.group),
                   title: const Text('Social Media',
                       style: TextStyle(fontSize: 18)),
-                  trailing:
-                      const Icon(Icons.arrow_forward_ios), // Trailing icon
+                  trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    // Navigate to Social Media settings
+                    _showSocialMediaBottomSheet(
+                        context); // Show bottom sheet on tap
                   },
                 ),
                 ListTile(
@@ -215,4 +207,72 @@ class _AppNavigation extends State<MainApp> {
       ],
     );
   }
+}
+
+void _showSocialMediaBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    ),
+    builder: (BuildContext context) {
+      return Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Social Media Contacts',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 10),
+            ListTile(
+              leading: const Icon(Icons.phone),
+              title: const Text('Customer Support'),
+              subtitle: const Text('+61 505 503 4455'),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                // Uncomment the following line to enable calling
+                // _launchUrl('tel:+11234567890');
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.facebook,
+                color: Colors.blue[600],
+              ),
+              title: const Text('Facebook'),
+              subtitle: const Text('https://www.facebook.com/terno'),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: SvgPicture.asset(
+                'assets/icon/instagram.svg',
+                width: 24,
+                height: 24,
+              ),
+              title: const Text('Instagram'),
+              subtitle: const Text('https://www.instagram.com/terno'),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: SvgPicture.asset(
+                'assets/icon/twitter.svg',
+                width: 24,
+                height: 24,
+              ),
+              title: const Text('Twitter'),
+              subtitle: const Text('https://twitter.com/terno'),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {},
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }

@@ -16,7 +16,7 @@ class _MapPageState extends State<MapPage> {
   final MapController _mapController = MapController();
   final LatLng _location =
       const LatLng(-37.79371684309027, 144.89852896518929); // Fixed coordinates
-  final double _initialZoom = 10.0; // Start with a lower zoom level
+  final double _initialZoom = 30.0; //
 
   @override
   void initState() {
@@ -27,9 +27,9 @@ class _MapPageState extends State<MapPage> {
   Future<void> _zoomInOnLoad() async {
     // Delay to allow map to load first, then zoom in gradually
     await Future.delayed(const Duration(milliseconds: 500));
-    _mapController.move(_location, 12.0); // Zoom level 12.0 after delay
+    _mapController.move(_location, 50.0); // Zoom level 12.0 after delay
     await Future.delayed(const Duration(milliseconds: 500));
-    _mapController.move(_location, 15.0); // Final zoom level 15.0 after delay
+    _mapController.move(_location, 17.5); // Final zoom level 15.0 after delay
   }
 
   @override
