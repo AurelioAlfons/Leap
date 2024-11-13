@@ -52,6 +52,20 @@ class _AppNavigation extends State<MainApp> {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                CircleAvatar(
+                  radius: 56,
+                  backgroundColor:
+                      Theme.of(context).brightness == Brightness.dark
+                          ? DarkMode.outerAvatarColor
+                          : LightMode.outerAvatarColor,
+                  child: const CircleAvatar(
+                    radius: 45,
+                    backgroundImage: AssetImage('assets/icon/terno.png'),
+                  ),
+                ),
                 ListTile(
                   leading: const Icon(Icons.person),
                   title: const Text('Account', style: TextStyle(fontSize: 18)),
