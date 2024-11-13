@@ -3,6 +3,7 @@ import 'package:leap/UI/Layout/customappbar.dart';
 import 'package:leap/UI/Layout/themeprovider.dart';
 import 'package:leap/UI/Layout/dark.dart';
 import 'package:leap/UI/Layout/light.dart';
+import 'package:leap/UI/Widget/ad.dart';
 import 'package:leap/UI/Widget/bottomsheet.dart';
 import 'package:leap/UI/Widget/post.dart';
 
@@ -74,6 +75,23 @@ class HomePage extends StatelessWidget {
         salary: '\$25/hour',
         link: 'https://www.mercedes-benz.com/',
       ),
+      AdvertisementWidget(
+        companyName: 'Victoria University',
+        location: 'Melbourne, Victoria, Australia',
+        companyLogo: const NetworkImage(
+            'https://www.studiosity.com/hubfs/Studiosity/Logos/Partner%20Logos/University%20Logos/Mono-400x400px/Victoria-University-Logo-400×400px.png'),
+        media: Image.network(
+          'https://i.ytimg.com/vi/bmflRVyfV_8/maxresdefault.jpg',
+          fit: BoxFit.cover,
+        ),
+        headline: 'Join VU Course in Business Management',
+        description:
+            'Be a part of an innovative and industry-leading program that prepares you for success in the business world.',
+        link: 'https://www.vicuni.edu.au/',
+        onLearnMore: () {
+          // Define your action here, like opening a link
+        },
+      ),
       InternshipPost(
         companyName: 'CoinJar',
         location: 'Melbourne, Victoria',
@@ -111,6 +129,23 @@ class HomePage extends StatelessWidget {
         date: 'Oct 26, 2024', // Added date
         salary: '\$24/hour', // Example salary
         link: 'https://www.mercedes-benz.com/', // Example link
+      ),
+      AdvertisementWidget(
+        companyName: 'Swinburne University',
+        location: 'Melbourne, Victoria, Australia',
+        companyLogo: const NetworkImage(
+            'https://media.licdn.com/dms/image/v2/C5607AQHFnPDdCelWZA/group-logo_image-shrink_92x92/group-logo_image-shrink_92x92/0/1640227169749?e=1732082400&v=beta&t=gFzeegnyUShowxmLRUVIbvd_L1nJ8291Puge35F1dJs'),
+        media: Image.network(
+          'https://i.ytimg.com/vi/8vDS5veKrKU/maxresdefault.jpg', // You may want to update this URL to an appropriate image
+          fit: BoxFit.cover,
+        ),
+        headline: 'Study Robotics and Mechatronics at Swinburne',
+        description:
+            'Join an innovative program focused on the future of technology. Gain cutting-edge skills in Robotics and Artificial Intelligence, preparing you for a career in an advanced and dynamic field.',
+        link: 'https://www.swinburne.edu.au/', // Swinburne's website
+        onLearnMore: () {
+          // Define your action here, like opening a link
+        },
       ),
       InternshipPost(
         companyName: 'Infosys',
@@ -169,22 +204,36 @@ class HomePage extends StatelessWidget {
         itemCount: posts.length,
         itemBuilder: (context, index) {
           final post = posts[index];
-          return GestureDetector(
-            onTap: () => showReusableBottomSheet(
-              context: context,
-              title: post.positionName,
-              subtitle: post.companyName,
-              description: post.description,
-              location: post.location,
-              salary: post.salary,
-              skills: post.keySkills,
-              onApply: post.onApply,
-            ),
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: post,
-            ),
-          );
+
+          // Render the appropriate widget based on post type
+          if (post is InternshipPost) {
+            return GestureDetector(
+              onTap: () => showReusableBottomSheet(
+                context: context,
+                title: post.positionName,
+                subtitle: post.companyName,
+                description: post.description,
+                location: post.location,
+                salary: post.salary,
+                skills: post.keySkills,
+                onApply: post.onApply,
+              ),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: post,
+              ),
+            );
+          } else if (post is AdvertisementWidget) {
+            return GestureDetector(
+              onTap: post.onLearnMore,
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: post,
+              ),
+            );
+          } else {
+            return const SizedBox.shrink(); // Fallback for unsupported types
+          }
         },
       ),
     );
