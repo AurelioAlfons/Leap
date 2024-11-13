@@ -101,7 +101,11 @@ class _AppNavigation extends State<MainApp> {
                   trailing:
                       const Icon(Icons.arrow_forward_ios), // Trailing icon
                   onTap: () {
-                    // Navigate to Location settings
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      '/map',
+                      (Route<dynamic> route) => false,
+                    );
                   },
                 ),
               ],

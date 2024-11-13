@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leap/UI/Drawer/map.dart';
 import 'package:leap/UI/Layout/themeprovider.dart';
 import 'package:leap/UI/Layout/dark.dart';
 import 'package:leap/UI/Layout/light.dart';
@@ -41,6 +42,7 @@ class _MyAppState extends State<MyApp> {
           '/home': (context) => const MainApp(),
           '/signup': (context) => SignUpPage(),
           '/settings': (context) => const SettingsPage(),
+          '/map': (context) => const MapPage(),
         },
       ),
     );
