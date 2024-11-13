@@ -11,6 +11,9 @@ dependencies:
     sdk: flutter
 
   shared_preferences: ^2.3.3
+  flutter_map: ^7.0.2
+  location: ^7.0.1
+  latlong2: ^0.9.1
 
 dev_dependencies:
   flutter_test:
