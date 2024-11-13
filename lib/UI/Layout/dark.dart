@@ -130,6 +130,10 @@ class DarkMode {
       Color.fromARGB(255, 0, 255, 127); // Green button background color
   static const Color buttonTextColor =
       Colors.black; // Black text and icon color on green button
+  static const Color cardColor =
+      Color.fromARGB(255, 38, 39, 41); // Adjust this color if needed
+  static const Color shadowColor =
+      Color.fromARGB(255, 55, 204, 87); // Adjust the color as needed
 
   // Drawer header style for consistency
   static const BoxDecoration drawerHeaderStyle = BoxDecoration(

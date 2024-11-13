@@ -129,6 +129,9 @@ class LightMode {
       Color(0xFF007A5E); // Green background
   static const Color buttonTextColor =
       Colors.white; // White text/icon color for light mode
+  static const Color cardColor = Colors.white; // Adjust this color if needed
+  static Color shadowColor =
+      Colors.grey.withOpacity(0.5); // Adjust this color if needed
 
   // Drawer header style for consistency
   static const BoxDecoration drawerHeaderStyle = BoxDecoration(

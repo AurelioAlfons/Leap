@@ -121,7 +121,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: screenHeight * 0.04),
               OutlinedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/business');
+                  Navigator.pushNamed(context, '/businessLogin');
                 },
                 style: OutlinedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),

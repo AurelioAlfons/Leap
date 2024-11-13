@@ -1,7 +1,11 @@
+// lib/business_page.dart
 import 'package:flutter/material.dart';
+import 'package:leap/UI/Business/gallery.dart';
+import 'package:leap/UI/Business/posting.dart';
+import 'package:leap/UI/Business/profile.dart';
 import 'package:leap/UI/Layout/dark.dart';
 import 'package:leap/UI/Layout/light.dart';
-import 'package:leap/UI/Layout/themeprovider.dart';
+import 'package:leap/UI/Layout/themeprovider.dart'; // Import the new page files
 
 class BusinessPage extends StatefulWidget {
   const BusinessPage({super.key});
@@ -11,13 +15,13 @@ class BusinessPage extends StatefulWidget {
 }
 
 class _BusinessPageState extends State<BusinessPage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int _currentIndex = 0;
 
-  // Define the pages for each bottom navigation item
   final List<Widget> _pages = [
     const GalleryPage(),
-    const CreatePostPage(),
-    const ProfilePage(),
+    const PostPage(),
+    const BusinessProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -31,24 +35,23 @@ class _BusinessPageState extends State<BusinessPage> {
     final themeProvider = ThemeProvider.of(context);
 
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: const Text('Business App'),
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () => _scaffoldKey.currentState!.openDrawer(),
+        ),
         actions: [
           IconButton(
-            icon: Icon(
-              themeProvider.isDarkMode
-                  ? Icons.brightness_4
-                  : Icons.brightness_4_outlined,
-              color: themeProvider.isDarkMode
-                  ? DarkMode.iconColor
-                  : LightMode.iconColor,
-            ),
-            onPressed: themeProvider.toggleTheme,
-            tooltip: 'Toggle Theme',
+            icon: const Icon(Icons.lightbulb_outlined),
+            onPressed: () => _scaffoldKey.currentState!.openEndDrawer(),
+            tooltip: 'Open Settings',
           ),
         ],
       ),
       drawer: _buildLeftDrawer(themeProvider),
+      endDrawer: _buildRightDrawer(themeProvider),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -71,7 +74,6 @@ class _BusinessPageState extends State<BusinessPage> {
     );
   }
 
-  // Left drawer for navigation
   Drawer _buildLeftDrawer(ThemeProvider themeProvider) {
     return Drawer(
       child: Column(
@@ -108,107 +110,76 @@ class _BusinessPageState extends State<BusinessPage> {
       ),
     );
   }
-}
 
-// Placeholder for Gallery Page
-class GalleryPage extends StatelessWidget {
-  const GalleryPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Gallery',
-        style: Theme.of(context).textTheme.headlineSmall,
-      ),
-    );
-  }
-}
-
-// Create Post Page (Reddit-style posting feature)
-class CreatePostPage extends StatelessWidget {
-  const CreatePostPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
+  Drawer _buildRightDrawer(ThemeProvider themeProvider) {
+    return Drawer(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Create a Post',
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
-          const SizedBox(height: 16.0),
-
-          // Title TextField
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Title',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                CircleAvatar(
+                  radius: 65,
+                  backgroundColor:
+                      Theme.of(context).brightness == Brightness.dark
+                          ? DarkMode.outerAvatarColor
+                          : LightMode.outerAvatarColor,
+                  child: const CircleAvatar(
+                    radius: 45,
+                    backgroundImage: AssetImage('assets/icon/terno.png'),
+                  ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.person),
+                  title: const Text('Billing Account',
+                      style: TextStyle(fontSize: 18)),
+                  trailing:
+                      const Icon(Icons.arrow_forward_ios), // Trailing icon
+                  onTap: () {
+                    // Navigate to Account settings
+                  },
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 16.0),
-
-          // Content TextField
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Content',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: ListTile(
+                  leading: const Icon(Icons.settings_suggest_sharp),
+                  title: const Text(
+                    'Settings',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                  onTap: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      '/settings',
+                      (Route<dynamic> route) => false,
+                    );
+                  },
+                ),
               ),
-            ),
-            maxLines: 6,
-          ),
-          const SizedBox(height: 16.0),
-
-          // Image Upload Button
-          OutlinedButton.icon(
-            onPressed: () {
-              // Add logic to select an image
-            },
-            icon: const Icon(Icons.image),
-            label: const Text('Add Image'),
-          ),
-          const SizedBox(height: 16.0),
-
-          // Submit Button
-          ElevatedButton(
-            onPressed: () {
-              // Add logic to post the content
-            },
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
+              IconButton(
+                icon: Icon(
+                  themeProvider.isDarkMode
+                      ? Icons.brightness_4
+                      : Icons.brightness_4_outlined,
+                  color: themeProvider.isDarkMode
+                      ? DarkMode.iconColor
+                      : LightMode.iconColor,
+                ),
+                onPressed: themeProvider.toggleTheme,
+                tooltip: 'Toggle Theme',
               ),
-            ),
-            child: const Center(
-              child: Text(
-                'Post',
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
+            ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-// Placeholder for Profile Page
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Profile',
-        style: Theme.of(context).textTheme.headlineSmall,
       ),
     );
   }

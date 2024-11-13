@@ -4,6 +4,7 @@ import 'package:leap/UI/Drawer/map.dart';
 import 'package:leap/UI/Layout/themeprovider.dart';
 import 'package:leap/UI/Layout/dark.dart';
 import 'package:leap/UI/Layout/light.dart';
+import 'package:leap/UI/Login/businesslogin.dart';
 import 'package:leap/UI/Login/login.dart';
 import 'package:leap/UI/Login/signup.dart';
 import 'package:leap/UI/Settings/settings.dart';
@@ -45,6 +46,7 @@ class _MyAppState extends State<MyApp> {
           '/settings': (context) => const SettingsPage(),
           '/map': (context) => const MapPage(),
           '/business': (context) => const BusinessPage(),
+          '/businessLogin': (context) => const BusinessLoginPage(),
         },
       ),
     );
