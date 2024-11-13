@@ -49,6 +49,10 @@ class _MyAppState extends State<MyApp> {
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  Future<void> _reloadData() async {
+    await Future.delayed(const Duration(seconds: 2));
+  }
+
   @override
   Widget build(BuildContext context) {
     final posts = [
@@ -67,9 +71,7 @@ class HomePage extends StatelessWidget {
           'Project Management',
           'Analytics'
         ],
-        onApply: () {
-          // Handle apply action for Mercedes-Benz
-        },
+        onApply: () {},
         initialMatchExperience: true,
         date: 'Oct 04, 2024',
         salary: '\$25/hour',
@@ -88,9 +90,7 @@ class HomePage extends StatelessWidget {
         description:
             'Be a part of an innovative and industry-leading program that prepares you for success in the business world.',
         link: 'https://www.vicuni.edu.au/',
-        onLearnMore: () {
-          // Define your action here, like opening a link
-        },
+        onLearnMore: () {},
       ),
       InternshipPost(
         companyName: 'CoinJar',
@@ -129,23 +129,6 @@ class HomePage extends StatelessWidget {
         date: 'Oct 26, 2024', // Added date
         salary: '\$24/hour', // Example salary
         link: 'https://www.mercedes-benz.com/', // Example link
-      ),
-      AdvertisementWidget(
-        companyName: 'Swinburne University',
-        location: 'Melbourne, Victoria, Australia',
-        companyLogo: const NetworkImage(
-            'https://media.licdn.com/dms/image/v2/C5607AQHFnPDdCelWZA/group-logo_image-shrink_92x92/group-logo_image-shrink_92x92/0/1640227169749?e=1732082400&v=beta&t=gFzeegnyUShowxmLRUVIbvd_L1nJ8291Puge35F1dJs'),
-        media: Image.network(
-          'https://i.ytimg.com/vi/8vDS5veKrKU/maxresdefault.jpg', // You may want to update this URL to an appropriate image
-          fit: BoxFit.cover,
-        ),
-        headline: 'Study Robotics and Mechatronics at Swinburne',
-        description:
-            'Join an innovative program focused on the future of technology. Gain cutting-edge skills in Robotics and Artificial Intelligence, preparing you for a career in an advanced and dynamic field.',
-        link: 'https://www.swinburne.edu.au/', // Swinburne's website
-        onLearnMore: () {
-          // Define your action here, like opening a link
-        },
       ),
       InternshipPost(
         companyName: 'Infosys',
@@ -199,42 +182,45 @@ class HomePage extends StatelessWidget {
         onMenuPressed: () => Scaffold.of(context).openDrawer(),
         onEndDrawerPressed: () => Scaffold.of(context).openEndDrawer(),
       ),
-      body: PageView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: posts.length,
-        itemBuilder: (context, index) {
-          final post = posts[index];
+      body: RefreshIndicator(
+        onRefresh: _reloadData,
+        child: PageView.builder(
+          scrollDirection: Axis.vertical,
+          itemCount: posts.length,
+          itemBuilder: (context, index) {
+            final post = posts[index];
 
-          // Render the appropriate widget based on post type
-          if (post is InternshipPost) {
-            return GestureDetector(
-              onTap: () => showReusableBottomSheet(
-                context: context,
-                title: post.positionName,
-                subtitle: post.companyName,
-                description: post.description,
-                location: post.location,
-                salary: post.salary,
-                skills: post.keySkills,
-                onApply: post.onApply,
-              ),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: post,
-              ),
-            );
-          } else if (post is AdvertisementWidget) {
-            return GestureDetector(
-              onTap: post.onLearnMore,
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: post,
-              ),
-            );
-          } else {
-            return const SizedBox.shrink(); // Fallback for unsupported types
-          }
-        },
+            // Render the appropriate widget based on post type
+            if (post is InternshipPost) {
+              return GestureDetector(
+                onTap: () => showReusableBottomSheet(
+                  context: context,
+                  title: post.positionName,
+                  subtitle: post.companyName,
+                  description: post.description,
+                  location: post.location,
+                  salary: post.salary,
+                  skills: post.keySkills,
+                  onApply: post.onApply,
+                ),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: post,
+                ),
+              );
+            } else if (post is AdvertisementWidget) {
+              return GestureDetector(
+                onTap: post.onLearnMore,
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: post,
+                ),
+              );
+            } else {
+              return const SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

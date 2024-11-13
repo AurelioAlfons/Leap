@@ -50,6 +50,14 @@ class _SettingsPage extends State<SettingsPage> {
               style: TextStyle(fontSize: 16),
             ),
           ),
+          const SizedBox(height: 15),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'ABN Number: 11 222 333 444',
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
           const SizedBox(height: 16),
 
           // Content Policies Section
