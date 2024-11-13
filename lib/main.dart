@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:leap/UI/Widget/profilemodel.dart';
+import 'package:provider/provider.dart';
 import 'package:leap/UI/Business/business.dart';
 import 'package:leap/UI/Drawer/map.dart';
 import 'package:leap/UI/Layout/themeprovider.dart';
@@ -8,6 +10,7 @@ import 'package:leap/UI/Login/businesslogin.dart';
 import 'package:leap/UI/Login/login.dart';
 import 'package:leap/UI/Login/signup.dart';
 import 'package:leap/UI/Settings/settings.dart';
+import 'package:leap/UI/Widget/editprofile.dart';
 import 'package:leap/content.dart';
 
 void main() {
@@ -32,22 +35,29 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ThemeProvider(
-      isDarkMode: isDarkMode,
-      toggleTheme: _toggleTheme,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: isDarkMode ? DarkMode.darkTheme : LightMode.lightTheme,
-        initialRoute: '/',
-        routes: {
-          '/': (context) => const LoginPage(),
-          '/home': (context) => const MainApp(),
-          '/signup': (context) => SignUpPage(),
-          '/settings': (context) => const SettingsPage(),
-          '/map': (context) => const MapPage(),
-          '/business': (context) => const BusinessPage(),
-          '/businessLogin': (context) => const BusinessLoginPage(),
-        },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+            create: (_) => ProfileModel()), // Add ProfileModel
+      ],
+      child: ThemeProvider(
+        isDarkMode: isDarkMode,
+        toggleTheme: _toggleTheme,
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: isDarkMode ? DarkMode.darkTheme : LightMode.lightTheme,
+          initialRoute: '/',
+          routes: {
+            '/': (context) => const LoginPage(),
+            '/home': (context) => const MainApp(),
+            '/signup': (context) => SignUpPage(),
+            '/settings': (context) => const SettingsPage(),
+            '/map': (context) => const MapPage(),
+            '/business': (context) => const BusinessPage(),
+            '/businessLogin': (context) => const BusinessLoginPage(),
+            '/editprofile': (context) => EditProfile(),
+          },
+        ),
       ),
     );
   }

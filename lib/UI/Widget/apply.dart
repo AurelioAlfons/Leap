@@ -27,6 +27,15 @@ void showApplyConfirmationDialog({
             onPressed: () {
               Navigator.pop(context); // Close the dialog
               onConfirm(); // Trigger the apply action
+
+              // Show success message after applying
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Application Successful"),
+                  backgroundColor: Colors.green,
+                  duration: Duration(seconds: 2),
+                ),
+              );
             },
             child: const Text("Proceed", style: TextStyle(color: Colors.green)),
           ),
