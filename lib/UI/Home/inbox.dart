@@ -20,7 +20,7 @@ class InboxPage extends StatelessWidget {
           onEndDrawerPressed: () => Scaffold.of(context).openEndDrawer(),
           bottom: const TabBar(
             tabs: [
-              Tab(text: 'Check'),
+              Tab(text: 'All'),
               Tab(text: 'Finalized'),
               Tab(text: 'Pending'),
             ],
