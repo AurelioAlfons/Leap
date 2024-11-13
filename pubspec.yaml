@@ -54,8 +54,11 @@ flutter:
     - assets/icon/coinjar.png
     - assets/icon/redbull.png
     - assets/icon/terno.png
+
     - assets/icon/instagram.svg
     - assets/icon/twitter.svg
+    - assets/icon/tiktok.svg
+    - assets/icon/linkedin.svg
 
     - assets/image/bg.jpeg
 
