@@ -129,7 +129,7 @@ class BusinessLoginPage extends StatelessWidget {
               // Business Login Button
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/home');
+                  Navigator.pushReplacementNamed(context, '/business');
                 },
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
