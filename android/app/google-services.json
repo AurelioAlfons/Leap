@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "154536659952",
+    "project_id": "terno-90507",
+    "storage_bucket": "terno-90507.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154536659952:android:4ee0f130fa9252ec32eb35",
+        "android_client_info": {
+          "package_name": "com.company.terno"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUdoQKt9VeoliiAMimHr7x-8RNA5Dqkow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
