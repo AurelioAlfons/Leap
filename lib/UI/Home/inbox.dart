@@ -3,6 +3,7 @@ import 'package:leap/UI/Layout/customappbar.dart';
 import 'package:leap/UI/Layout/dark.dart';
 import 'package:leap/UI/Layout/light.dart';
 import 'package:leap/UI/Layout/themeprovider.dart';
+import 'package:leap/UI/Widget/seemore.dart'; // Assuming SeeMore is in Widget folder
 
 class InboxPage extends StatelessWidget {
   const InboxPage({super.key});
@@ -36,7 +37,9 @@ class InboxPage extends StatelessWidget {
                   'companyName': 'CoinJar',
                   'location': 'Melbourne, Victoria',
                   'avatar': 'assets/icon/coinjar.png',
-                  'date': 'Nov 28'
+                  'date': 'Nov 28',
+                  'description':
+                      'Design and improve the user interface and user experience for CoinJar\'s mobile and web applications.'
                 },
                 {
                   'category': 'Pending',
@@ -44,7 +47,9 @@ class InboxPage extends StatelessWidget {
                   'companyName': 'DiDi',
                   'location': 'Melbourne, Victoria, Australia',
                   'avatar': 'assets/icon/didi.png',
-                  'date': 'Nov 26'
+                  'date': 'Nov 26',
+                  'description':
+                      'Analyze business needs and provide insights to optimize operations at DiDi.'
                 },
                 {
                   'category': 'Finalized',
@@ -52,7 +57,9 @@ class InboxPage extends StatelessWidget {
                   'companyName': 'Infosys',
                   'location': 'Melbourne, Victoria, Australia',
                   'avatar': 'assets/icon/infosys.jpg',
-                  'date': 'Oct 26'
+                  'date': 'Oct 26',
+                  'description':
+                      'Develop and maintain software solutions for Infosys\' clients, focusing on quality and efficiency.'
                 },
                 {
                   'category': 'Finalized',
@@ -60,7 +67,9 @@ class InboxPage extends StatelessWidget {
                   'companyName': 'Bayside Group',
                   'location': 'Somerton, Victoria, Australia',
                   'avatar': 'assets/icon/bayside.jpeg',
-                  'date': 'Oct 15'
+                  'date': 'Oct 15',
+                  'description':
+                      'Provide technical support and troubleshooting services for Bayside Group\'s IT systems.'
                 },
                 {
                   'category': 'News',
@@ -68,7 +77,9 @@ class InboxPage extends StatelessWidget {
                   'companyName': 'Red Bull',
                   'location': 'South Melbourne, Victoria, ...',
                   'avatar': 'assets/icon/redbull.png',
-                  'date': 'Oct 11'
+                  'date': 'Oct 11',
+                  'description':
+                      'Engage with the local student community to promote Red Bull\'s brand through various marketing activities.'
                 },
                 {
                   'category': 'Finalized',
@@ -76,7 +87,9 @@ class InboxPage extends StatelessWidget {
                   'companyName': 'Mercedes-Benz',
                   'location': 'Mulgrave, Victoria, Australia',
                   'avatar': 'assets/icon/merce.jpg',
-                  'date': 'Oct 04'
+                  'date': 'Oct 04',
+                  'description':
+                      'Support digital initiatives and projects for Mercedes-Benz’s platform solutions.'
                 },
                 {
                   'category': 'Pending',
@@ -84,7 +97,9 @@ class InboxPage extends StatelessWidget {
                   'companyName': 'Eightfold Institute',
                   'location': 'Carlton, Victoria, Australia',
                   'avatar': 'assets/icon/eightfold.png',
-                  'date': 'Sep 20'
+                  'date': 'Sep 20',
+                  'description':
+                      'Oversee IT projects from planning to completion, ensuring alignment with Eightfold Institute\'s goals.'
                 },
               ],
             ),
@@ -96,7 +111,9 @@ class InboxPage extends StatelessWidget {
                   'companyName': 'Infosys',
                   'location': 'Melbourne, Victoria, Australia',
                   'avatar': 'assets/icon/infosys.jpg',
-                  'date': 'Oct 26'
+                  'date': 'Oct 26',
+                  'description':
+                      'Work on innovative software solutions that address Infosys’ global business needs.'
                 },
                 {
                   'category': 'Finalized',
@@ -104,15 +121,19 @@ class InboxPage extends StatelessWidget {
                   'companyName': 'Bayside Group',
                   'location': 'Somerton, Victoria, Australia',
                   'avatar': 'assets/icon/bayside.jpeg',
-                  'date': 'Oct 15'
+                  'date': 'Oct 15',
+                  'description':
+                      'Assist end-users with technical issues and maintain the efficiency of Bayside Group\'s IT services.'
                 },
                 {
                   'category': 'Finalized',
                   'title': 'Digital Platforms IBL',
-                  'companyName': 'Mercedez-Benz',
+                  'companyName': 'Mercedes-Benz',
                   'location': 'Mulgrave, Victoria, Australia',
                   'avatar': 'assets/icon/merce.jpg',
-                  'date': 'Oct 04'
+                  'date': 'Oct 04',
+                  'description':
+                      'Assist in developing and managing digital projects for Mercedes-Benz.'
                 },
               ],
             ),
@@ -124,23 +145,29 @@ class InboxPage extends StatelessWidget {
                   'companyName': 'CoinJar',
                   'location': 'Melbourne, Victoria',
                   'avatar': 'assets/icon/coinjar.png',
-                  'date': 'Nov 28'
+                  'date': 'Nov 28',
+                  'description':
+                      'Refine and enhance the visual and interactive aspects of CoinJar’s platforms.'
                 },
                 {
                   'category': 'Pending',
                   'title': 'Business Analyst',
                   'companyName': 'DiDi',
-                  'location': 'Melbourne, Victoria, Austrlia',
+                  'location': 'Melbourne, Victoria, Australia',
                   'avatar': 'assets/icon/didi.png',
-                  'date': 'Nov 26'
+                  'date': 'Nov 26',
+                  'description':
+                      'Evaluate and document DiDi\'s business processes to recommend strategic improvements.'
                 },
                 {
                   'category': 'Pending',
                   'title': 'IT Project Manager',
-                  'companyName': 'Eightfold Institue',
+                  'companyName': 'Eightfold Institute',
                   'location': 'Carlton, Victoria, Australia',
                   'avatar': 'assets/icon/eightfold.png',
-                  'date': 'Sep 20'
+                  'date': 'Sep 20',
+                  'description':
+                      'Lead IT projects, coordinate teams, and ensure timely project delivery for Eightfold Institute.'
                 },
               ],
             ),
@@ -175,6 +202,7 @@ class NotificationList extends StatelessWidget {
           location: item['location'],
           avatar: item['avatar'],
           date: item['date'],
+          description: item['description'],
         );
       },
       separatorBuilder: (context, index) => const SizedBox(height: 12),
@@ -189,6 +217,7 @@ class NotificationItem extends StatefulWidget {
   final String location;
   final String date;
   final String avatar;
+  final String description;
 
   const NotificationItem({
     super.key,
@@ -198,6 +227,7 @@ class NotificationItem extends StatefulWidget {
     required this.location,
     required this.date,
     required this.avatar,
+    required this.description,
   });
 
   @override
@@ -229,8 +259,7 @@ class _NotificationItemState extends State<NotificationItem> {
                 decoration: BoxDecoration(
                   color: themeProvider.isDarkMode
                       ? const Color.fromARGB(255, 0, 255, 127).withOpacity(0.7)
-                      : const Color(0xFF007A5E)
-                          .withOpacity(0.7), // Example color
+                      : const Color(0xFF007A5E).withOpacity(0.7),
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: Text(
@@ -253,8 +282,7 @@ class _NotificationItemState extends State<NotificationItem> {
                   widget.avatar,
                   width: 45,
                   height: 45,
-                  fit: BoxFit
-                      .cover, // Ensures the image covers the space without distortion
+                  fit: BoxFit.cover,
                 ),
               ),
               const SizedBox(width: 8),
@@ -293,9 +321,14 @@ class _NotificationItemState extends State<NotificationItem> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'See more',
-                style: Theme.of(context).textTheme.labelLarge,
+              SeeMore(
+                title: widget.title,
+                subtitle: widget.companyName,
+                description: widget.description,
+                location: widget.location,
+                onApply: () {
+                  // Action when Apply is pressed
+                },
               ),
               Text(
                 widget.date,
