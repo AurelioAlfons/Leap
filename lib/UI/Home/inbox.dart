@@ -3,7 +3,8 @@ import 'package:leap/UI/Layout/customappbar.dart';
 import 'package:leap/UI/Layout/dark.dart';
 import 'package:leap/UI/Layout/light.dart';
 import 'package:leap/UI/Layout/themeprovider.dart';
-import 'package:leap/UI/Widget/seemore.dart'; // Assuming SeeMore is in Widget folder
+import 'package:leap/UI/Widget/seemore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class InboxPage extends StatelessWidget {
   const InboxPage({super.key});
@@ -239,6 +240,27 @@ class _NotificationItemState extends State<NotificationItem> {
   bool isThumbsUp = false;
 
   @override
+  void initState() {
+    super.initState();
+    _loadThumbsUpState();
+  }
+
+  Future<void> _loadThumbsUpState() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isThumbsUp = prefs.getBool('${widget.title}_thumbsUp') ?? false;
+    });
+  }
+
+  Future<void> _toggleThumbsUp() async {
+    setState(() {
+      isThumbsUp = !isThumbsUp;
+    });
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('${widget.title}_thumbsUp', isThumbsUp);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final themeProvider = ThemeProvider.of(context);
 
@@ -309,11 +331,7 @@ class _NotificationItemState extends State<NotificationItem> {
                           ? DarkMode.iconColor
                           : LightMode.iconColor,
                 ),
-                onPressed: () {
-                  setState(() {
-                    isThumbsUp = !isThumbsUp;
-                  });
-                },
+                onPressed: _toggleThumbsUp,
               ),
             ],
           ),
