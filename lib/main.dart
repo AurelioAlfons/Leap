@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leap/UI/Business/payment.dart';
 import 'package:leap/UI/Widget/profilemodel.dart';
 import 'package:provider/provider.dart';
 import 'package:leap/UI/Business/business.dart';
@@ -56,6 +57,7 @@ class _MyAppState extends State<MyApp> {
             '/business': (context) => const BusinessPage(),
             '/businessLogin': (context) => const BusinessLoginPage(),
             '/editprofile': (context) => EditProfile(),
+            '/premium': (context) => const PremiumListing(),
           },
         ),
       ),

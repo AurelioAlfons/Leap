@@ -135,12 +135,15 @@ class _BusinessPageState extends State<BusinessPage> {
                 ),
                 ListTile(
                   leading: const Icon(Icons.person),
-                  title: const Text('Billing Account',
+                  title: const Text('Premium Listing',
                       style: TextStyle(fontSize: 18)),
                   trailing:
                       const Icon(Icons.arrow_forward_ios), // Trailing icon
                   onTap: () {
-                    // Navigate to Account settings
+                    Navigator.pushNamed(
+                      context,
+                      '/premium',
+                    );
                   },
                 ),
               ],
