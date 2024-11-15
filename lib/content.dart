@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart'; // Add this for launching URLs
 import 'package:leap/UI/Home/dashboard.dart';
 import 'package:leap/UI/Home/home.dart';
 import 'package:leap/UI/Home/inbox.dart';
@@ -137,12 +138,19 @@ class _AppNavigation extends State<MainApp> {
           Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
-              children: const [
-                DrawerHeader(
-                  decoration: DarkMode.drawerHeaderStyle,
-                  child: Text(
-                    'Left Menu',
-                    style: TextStyle(color: Colors.white, fontSize: 24),
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                CircleAvatar(
+                  radius: 56,
+                  backgroundColor:
+                      Theme.of(context).brightness == Brightness.dark
+                          ? DarkMode.outerAvatarColor
+                          : LightMode.outerAvatarColor,
+                  child: const CircleAvatar(
+                    radius: 45,
+                    backgroundImage: AssetImage('assets/icon/terno.png'),
                   ),
                 ),
               ],
@@ -196,96 +204,115 @@ class _AppNavigation extends State<MainApp> {
       ],
     );
   }
-}
 
-void _showSocialMediaBottomSheet(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-    ),
-    builder: (BuildContext context) {
-      return Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Social Media Contacts',
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 10),
-              ListTile(
-                leading: const Icon(Icons.phone),
-                title: const Text('Customer Support'),
-                subtitle: const Text('+61 505 503 4455'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () {
-                  // Uncomment the following line to enable calling
-                  // _launchUrl('tel:+11234567890');
-                },
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.facebook,
-                  color: Colors.blue[600],
+  void _showSocialMediaBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Social Media Contacts',
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
-                title: const Text('Facebook'),
-                subtitle: const Text('https://www.facebook.com/terno'),
-                trailing: const Icon(
-                  Icons.arrow_forward_ios,
+                const SizedBox(height: 10),
+                ListTile(
+                  leading: const Icon(Icons.phone),
+                  title: const Text('Customer Support'),
+                  subtitle: const Text('+61 505 503 4455'),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                  onTap: () {
+                    _launchUrl('tel:+615055034455'); // Launch phone call
+                  },
                 ),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: SvgPicture.asset(
-                  'assets/icon/instagram.svg',
-                  width: 24,
-                  height: 24,
+                ListTile(
+                  leading: Icon(
+                    Icons.facebook,
+                    color: Colors.blue[600],
+                  ),
+                  title: const Text('Facebook'),
+                  subtitle: const Text('https://www.facebook.com/terno'),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                  onTap: () {
+                    _launchUrl('https://www.facebook.com');
+                  },
                 ),
-                title: const Text('Instagram'),
-                subtitle: const Text('https://www.instagram.com/terno'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: SvgPicture.asset(
-                  'assets/icon/twitter.svg',
-                  width: 24,
-                  height: 24,
+                ListTile(
+                  leading: SvgPicture.asset(
+                    'assets/icon/instagram.svg',
+                    width: 24,
+                    height: 24,
+                  ),
+                  title: const Text('Instagram'),
+                  subtitle: const Text('https://www.instagram.com/terno'),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                  onTap: () {
+                    _launchUrl('https://www.instagram.com');
+                  },
                 ),
-                title: const Text('Twitter'),
-                subtitle: const Text('https://twitter.com/terno'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: SvgPicture.asset(
-                  'assets/icon/tiktok.svg',
-                  width: 24,
-                  height: 24,
+                ListTile(
+                  leading: SvgPicture.asset(
+                    'assets/icon/twitter.svg',
+                    width: 24,
+                    height: 24,
+                  ),
+                  title: const Text('Twitter'),
+                  subtitle: const Text('https://twitter.com/terno'),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                  onTap: () {
+                    _launchUrl('https://twitter.com');
+                  },
                 ),
-                title: const Text('Tiktok'),
-                subtitle: const Text('https://tiktok.com/terno'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: SvgPicture.asset(
-                  'assets/icon/linkedin.svg',
-                  width: 24,
-                  height: 24,
+                ListTile(
+                  leading: SvgPicture.asset(
+                    'assets/icon/tiktok.svg',
+                    width: 24,
+                    height: 24,
+                  ),
+                  title: const Text('Tiktok'),
+                  subtitle: const Text('https://tiktok.com/terno'),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                  onTap: () {
+                    _launchUrl('https://tiktok.com');
+                  },
                 ),
-                title: const Text('Linkedin'),
-                subtitle: const Text('https://linkedin.com/terno'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () {},
-              ),
-            ],
+                ListTile(
+                  leading: SvgPicture.asset(
+                    'assets/icon/linkedin.svg',
+                    width: 24,
+                    height: 24,
+                  ),
+                  title: const Text('Linkedin'),
+                  subtitle: const Text('https://linkedin.com/terno'),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                  onTap: () {
+                    _launchUrl('https://linkedin.com');
+                  },
+                ),
+              ],
+            ),
           ),
-        ),
+        );
+      },
+    );
+  }
+
+  Future<void> _launchUrl(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication, // Opens in the default browser
       );
-    },
-  );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }

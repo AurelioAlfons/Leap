@@ -81,12 +81,19 @@ class _BusinessPageState extends State<BusinessPage> {
           Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
-              children: const [
-                DrawerHeader(
-                  decoration: DarkMode.drawerHeaderStyle,
-                  child: Text(
-                    'Left Menu',
-                    style: TextStyle(color: Colors.white, fontSize: 24),
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                CircleAvatar(
+                  radius: 56,
+                  backgroundColor:
+                      Theme.of(context).brightness == Brightness.dark
+                          ? DarkMode.outerAvatarColor
+                          : LightMode.outerAvatarColor,
+                  child: const CircleAvatar(
+                    radius: 45,
+                    backgroundImage: AssetImage('assets/icon/terno.png'),
                   ),
                 ),
               ],

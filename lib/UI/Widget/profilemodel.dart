@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ProfileModel with ChangeNotifier {
   // Initial values for the profile information
-  String _name = "Bertram Gilfoyle";
+  String _name = "Name";
   String _title = "Mobile App Developer | UI/UX Designer";
   List<String> _keySkills = ["Flutter", "Dart", "Firebase"];
   String _studies =
