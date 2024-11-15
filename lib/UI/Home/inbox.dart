@@ -326,7 +326,9 @@ class _NotificationItemState extends State<NotificationItem> {
                 icon: Icon(
                   isThumbsUp ? Icons.thumb_up_alt : Icons.thumb_up_alt_outlined,
                   color: isThumbsUp
-                      ? const Color.fromARGB(255, 0, 255, 127)
+                      ? (themeProvider.isDarkMode
+                          ? DarkMode.iconColor
+                          : LightMode.iconColor)
                       : themeProvider.isDarkMode
                           ? DarkMode.iconColor
                           : LightMode.iconColor,
